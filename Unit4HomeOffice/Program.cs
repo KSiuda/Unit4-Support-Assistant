@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unit4HomeOffice.WorkClasses;
 
 namespace Unit4HomeOffice
 {
@@ -17,7 +18,10 @@ namespace Unit4HomeOffice
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            AppSetting setting = new AppSetting();
+            MouseMover mover = new MouseMover();
+            CaseUpdater updater = new CaseUpdater();
+            Application.Run(new Main(setting, mover, updater));
 
             
             

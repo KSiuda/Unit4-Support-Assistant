@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using OpenQA.Selenium;
 
 namespace Unit4HomeOffice
 {
@@ -38,6 +39,34 @@ namespace Unit4HomeOffice
         {
             config.AppSettings.Settings.Remove("password");
             config.AppSettings.Settings.Add("password", value);
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
+        }
+
+        public void SaveBrowserSettings(string value)
+        {
+            config.AppSettings.Settings.Remove("browser");
+            config.AppSettings.Settings.Add("browser", value);
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
+        }
+
+        public string GetBrowserSettings()
+        {
+            return config.AppSettings.Settings["browser"].Value;
+        }
+
+        public int GetInterval()
+        {
+            var interval = Convert.ToInt32(config.AppSettings.Settings["interval"].Value);
+
+            return interval;
+        }
+
+        public void SaveInterval(string value)
+        {
+            config.AppSettings.Settings.Remove("interval");
+            config.AppSettings.Settings.Add("interval", value);
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
         }
