@@ -47,7 +47,15 @@ namespace Unit4HomeOffice
             }
             if(_driver != null)
             {
-                _driver.Close();
+                try
+                {
+                    _driver.Close();
+
+                }
+                catch
+                {
+
+                }
             }
             Application.Exit();
         }
@@ -134,5 +142,9 @@ namespace Unit4HomeOffice
             
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }
