@@ -72,12 +72,13 @@ namespace Unit4HomeOffice
             if(move == false)
             {
                 move = true;
-                Mover = _mover.GhostMouse(move);
+                Mover = _mover.GhostMouse(move, _main);
                 Mover.Start();
             }
             else
             {
                 move = false;
+                labelMouse.Invoke(new Action(() => labelMouse.Visible = false));
                 Mover.Abort();
             }
         }
@@ -146,5 +147,7 @@ namespace Unit4HomeOffice
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+
     }
 }

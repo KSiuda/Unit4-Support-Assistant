@@ -91,6 +91,8 @@ namespace Unit4HomeOffice.WorkClasses
 
             while (update)
             {
+                form.monitorLabel.Invoke(new Action(() => form.monitorLabel.Visible = true));
+
                 try
                 {
                     Int32.TryParse((GetInProgress(driver).Substring(13, 2)), out int current);
@@ -101,11 +103,10 @@ namespace Unit4HomeOffice.WorkClasses
                         {
                             MessageBox.Show("YOUR PROGRESS HAS CHANGED!!!");
                         }
-                        cached = current;
                     }
                     //GetCurrentInProgressCases(driver);
                     Thread.Sleep(appSetting.GetInterval());
-
+                    cached = current;
                     count++;
                 }
                 catch
@@ -115,7 +116,9 @@ namespace Unit4HomeOffice.WorkClasses
                 }
                 
             }
-           
+
+            form.monitorLabel.Invoke(new Action(() => form.monitorLabel.Visible = false));
+
         }
 
     }
