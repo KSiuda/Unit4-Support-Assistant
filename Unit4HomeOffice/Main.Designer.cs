@@ -51,6 +51,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dragControl1 = new Unit4HomeOffice.WorkClasses.DragControl();
             this.dragControl2 = new Unit4HomeOffice.WorkClasses.DragControl();
+            this.salesforceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUNIT4)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.panelLeft.SuspendLayout();
@@ -74,11 +75,11 @@
             this.labelHO.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelHO.Font = new System.Drawing.Font("Century Gothic", 28F);
             this.labelHO.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(135)))), ((int)(((byte)(142)))));
-            this.labelHO.Location = new System.Drawing.Point(679, 28);
+            this.labelHO.Location = new System.Drawing.Point(502, 38);
             this.labelHO.Name = "labelHO";
-            this.labelHO.Size = new System.Drawing.Size(318, 57);
+            this.labelHO.Size = new System.Drawing.Size(494, 45);
             this.labelHO.TabIndex = 1;
-            this.labelHO.Text = "Home Office";
+            this.labelHO.Text = "Home Office Starter Pack";
             // 
             // panelHeader
             // 
@@ -93,7 +94,7 @@
             this.panelHeader.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1200, 133);
+            this.panelHeader.Size = new System.Drawing.Size(1199, 133);
             this.panelHeader.TabIndex = 2;
             // 
             // button6
@@ -136,6 +137,7 @@
             // panelLeft
             // 
             this.panelLeft.BackColor = System.Drawing.Color.White;
+            this.panelLeft.Controls.Add(this.salesforceLabel);
             this.panelLeft.Controls.Add(this.labelMouse);
             this.panelLeft.Controls.Add(this.monitorLabel);
             this.panelLeft.Controls.Add(this.button5);
@@ -145,16 +147,16 @@
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 133);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(200, 667);
+            this.panelLeft.Size = new System.Drawing.Size(200, 483);
             this.panelLeft.TabIndex = 3;
             // 
             // labelMouse
             // 
             this.labelMouse.AutoSize = true;
             this.labelMouse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.labelMouse.Location = new System.Drawing.Point(38, 635);
+            this.labelMouse.Location = new System.Drawing.Point(38, 444);
             this.labelMouse.Name = "labelMouse";
-            this.labelMouse.Size = new System.Drawing.Size(151, 23);
+            this.labelMouse.Size = new System.Drawing.Size(123, 21);
             this.labelMouse.TabIndex = 8;
             this.labelMouse.Text = "Mouse clicking";
             this.labelMouse.Visible = false;
@@ -163,9 +165,9 @@
             // 
             this.monitorLabel.AutoSize = true;
             this.monitorLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.monitorLabel.Location = new System.Drawing.Point(38, 259);
+            this.monitorLabel.Location = new System.Drawing.Point(38, 269);
             this.monitorLabel.Name = "monitorLabel";
-            this.monitorLabel.Size = new System.Drawing.Size(143, 23);
+            this.monitorLabel.Size = new System.Drawing.Size(116, 21);
             this.monitorLabel.TabIndex = 7;
             this.monitorLabel.Text = "Check active";
             this.monitorLabel.Visible = false;
@@ -186,7 +188,7 @@
             // 
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(27, 495);
+            this.button3.Location = new System.Drawing.Point(27, 304);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(144, 137);
             this.button3.TabIndex = 1;
@@ -199,7 +201,7 @@
             // 
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(27, 149);
+            this.button2.Location = new System.Drawing.Point(27, 159);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(144, 107);
             this.button2.TabIndex = 0;
@@ -212,7 +214,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 23);
+            this.label1.Size = new System.Drawing.Size(91, 21);
             this.label1.TabIndex = 4;
             this.label1.Text = "In Progress";
             // 
@@ -225,7 +227,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(200, 133);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1000, 100);
+            this.panel3.Size = new System.Drawing.Size(999, 100);
             this.panel3.TabIndex = 5;
             // 
             // progressLabel
@@ -233,7 +235,7 @@
             this.progressLabel.AutoSize = true;
             this.progressLabel.Location = new System.Drawing.Point(149, 38);
             this.progressLabel.Name = "progressLabel";
-            this.progressLabel.Size = new System.Drawing.Size(24, 23);
+            this.progressLabel.Size = new System.Drawing.Size(20, 21);
             this.progressLabel.TabIndex = 6;
             this.progressLabel.Text = "--";
             // 
@@ -243,7 +245,7 @@
             this.mainLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.mainLabel.Location = new System.Drawing.Point(387, 3);
             this.mainLabel.Name = "mainLabel";
-            this.mainLabel.Size = new System.Drawing.Size(250, 23);
+            this.mainLabel.Size = new System.Drawing.Size(199, 21);
             this.mainLabel.TabIndex = 5;
             this.mainLabel.Text = "Case Queue Dashboard";
             // 
@@ -255,6 +257,17 @@
             // 
             this.dragControl2.SelectControl = this.panelLeft;
             // 
+            // salesforceLabel
+            // 
+            this.salesforceLabel.AutoSize = true;
+            this.salesforceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.salesforceLabel.Location = new System.Drawing.Point(56, 132);
+            this.salesforceLabel.Name = "salesforceLabel";
+            this.salesforceLabel.Size = new System.Drawing.Size(87, 21);
+            this.salesforceLabel.TabIndex = 9;
+            this.salesforceLabel.Text = "Logged in";
+            this.salesforceLabel.Visible = false;
+            // 
             // Main
             // 
             this.AllowDrop = true;
@@ -263,7 +276,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(201)))), ((int)(((byte)(22)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1200, 800);
+            this.ClientSize = new System.Drawing.Size(1199, 616);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panelHeader);
@@ -310,6 +323,7 @@
         private System.Windows.Forms.Button button6;
         public System.Windows.Forms.Label monitorLabel;
         public System.Windows.Forms.Label labelMouse;
+        public System.Windows.Forms.Label salesforceLabel;
     }
 }
 

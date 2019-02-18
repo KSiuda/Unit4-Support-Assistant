@@ -18,7 +18,7 @@ namespace Unit4HomeOffice
         }
 
         public string GetUserName()
-        {
+        {           
             return config.AppSettings.Settings["username"].Value;
         }
 
@@ -32,12 +32,16 @@ namespace Unit4HomeOffice
 
         public string GetPassword()
         {
+            // string password = StringCipher.Decrypt(config.AppSettings.Settings["password"].Value, "password");
+            // return password ;
             return config.AppSettings.Settings["password"].Value;
         }
 
         public void SavePassword(string value)
         {
             config.AppSettings.Settings.Remove("password");
+            //string encryptedstring = StringCipher.Encrypt(value, "password");
+            //config.AppSettings.Settings.Add("password", encryptedstring);
             config.AppSettings.Settings.Add("password", value);
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);

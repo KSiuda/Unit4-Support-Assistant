@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Unit4HomeOffice.WorkClasses
+namespace Unit4HomeOffice
 {
     public class CaseUpdater
     {
@@ -65,24 +65,7 @@ namespace Unit4HomeOffice.WorkClasses
             return progres;
         }
 
-        public IWebDriver GetNew(Configuration configuration)
-        {
-            if (configuration.AppSettings.Settings["browser"].Value == "Firefox")
-            {
 
-                var o = new FirefoxOptions();
-                o.AddArgument("-headless");
-                var driver = new FirefoxDriver(o);
-
-                return driver;
-            }
-
-            var chromeDriverService = ChromeDriverService.CreateDefaultService();
-            chromeDriverService.HideCommandPromptWindow = true;
-
-            return new ChromeDriver(chromeDriverService, new ChromeOptions());
-
-        }
 
         public void UpdateCases(IWebDriver driver, AppSetting appSetting, bool update, Main form)
         {

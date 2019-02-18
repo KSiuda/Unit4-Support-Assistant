@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Threading;
 using System.Windows.Forms;
 using OpenQA.Selenium;
+using Unit4HomeOffice.Classes;
 using Unit4HomeOffice.WorkClasses;
 
 namespace Unit4HomeOffice
@@ -12,9 +13,10 @@ namespace Unit4HomeOffice
         Configuration _config;
         IWebDriver _driver;
         AppSetting _setting;
-        MouseMover _mover;
+        MouseClicker _mover;
         CaseUpdater _updater;
         Main _main;
+        DriverCreator _creator;
 
         private Thread Mover;
         private Thread CaseUpdater;
@@ -24,12 +26,13 @@ namespace Unit4HomeOffice
 
 
 
-        public Main(AppSetting setting, MouseMover mover, CaseUpdater updater)
+        public Main(AppSetting setting, MouseClicker mover, CaseUpdater updater, DriverCreator creator)
         {
             _setting = setting;
             _mover = mover;
             _updater = updater;
             _config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            _creator = creator;
             _main = this;
             InitializeComponent();
         }
@@ -95,16 +98,7 @@ namespace Unit4HomeOffice
         {
             try
             {
-                _config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                IWebDriver driver = _updater.GetNew(_config);
-                driver.Url = "https://u4.my.salesforce.com/";
-                _driver = driver;
-
-                driver.Manage().Window.Maximize();
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
-                driver.FindElement(By.Id("username")).SendKeys(_setting.GetUserName());
-                driver.FindElement(By.Id("password")).SendKeys(_setting.GetPassword() + OpenQA.Selenium.Keys.Enter);
+               _driver = _creator.CreateDriver(_updater, _config, _setting, _main);
             }
             catch
             {

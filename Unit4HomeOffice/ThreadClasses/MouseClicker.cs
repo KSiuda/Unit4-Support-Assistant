@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Unit4HomeOffice
 {
-    public class MouseMover
+    public class MouseClicker   
     {
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
@@ -32,13 +32,15 @@ namespace Unit4HomeOffice
 
         public void ghostMove(bool move, Main form)
         {
+
+            Cursor.Position = new System.Drawing.Point(Cursor.Position.X + 300, Cursor.Position.Y);
+
             while (move)
             {
                 form.labelMouse.Invoke(new Action(() => form.labelMouse.Visible = true));
                 Thread.Sleep(5000);
                 DoMouseClick();
                 /*Random random = new Random();
-                Cursor.Position = new System.Drawing.Point(Cursor.Position.X + random.Next(0, 500), Cursor.Position.Y + random.Next(0, 500));
                 Thread.Sleep(500);
                 Cursor.Position = new System.Drawing.Point(Cursor.Position.X - +random.Next(0, 500), Cursor.Position.Y - +random.Next(0, 500));
                 */
