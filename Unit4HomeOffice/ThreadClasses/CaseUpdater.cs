@@ -65,6 +65,7 @@ namespace Unit4HomeOffice
         {
             int cached = 0;
             int count = 0;
+            int current = 0;
 
             while (update)
             {
@@ -72,7 +73,15 @@ namespace Unit4HomeOffice
 
                 try
                 {
-                    Int32.TryParse((GetInProgress(driver).Substring(13, 2)), out int current);
+                    var progres = GetInProgress(driver);
+                    if (progres.Length == 16)
+                    {
+                        Int32.TryParse((progres.Substring(13, 2)), out current);
+                    }
+                    else if (progres.Length == 15)
+                    {
+                        Int32.TryParse((progres.Substring(13, 1)), out current);
+                    }
                     form.progressLabel.Invoke(new Action(() => form.progressLabel.Text = current.ToString()));
                     if (count > 0)
                     {
