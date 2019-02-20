@@ -7,3 +7,7 @@ I learned a lot about the automated tests while creating it.
 I made also a lot of refactoring while working on the application, since it started as a quiet silly joke, but turned out to be a some-what useful tool for the Support.
 
 This also gave me an oppurtunity to play with multi-threading within one application.
+
+# How to use it?
+
+Clone the repository and open solution using Visual Studio 2017.
