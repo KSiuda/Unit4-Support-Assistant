@@ -37,6 +37,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.salesforceLabel = new System.Windows.Forms.Label();
             this.labelMouse = new System.Windows.Forms.Label();
             this.monitorLabel = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
@@ -49,9 +50,10 @@
             this.progressLabel = new System.Windows.Forms.Label();
             this.mainLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.readmeTextBox = new System.Windows.Forms.TextBox();
+            this.readMeButton = new System.Windows.Forms.Button();
             this.dragControl1 = new Unit4HomeOffice.WorkClasses.DragControl();
             this.dragControl2 = new Unit4HomeOffice.WorkClasses.DragControl();
-            this.salesforceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUNIT4)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.panelLeft.SuspendLayout();
@@ -150,6 +152,17 @@
             this.panelLeft.Size = new System.Drawing.Size(200, 483);
             this.panelLeft.TabIndex = 3;
             // 
+            // salesforceLabel
+            // 
+            this.salesforceLabel.AutoSize = true;
+            this.salesforceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.salesforceLabel.Location = new System.Drawing.Point(56, 132);
+            this.salesforceLabel.Name = "salesforceLabel";
+            this.salesforceLabel.Size = new System.Drawing.Size(87, 21);
+            this.salesforceLabel.TabIndex = 9;
+            this.salesforceLabel.Text = "Logged in";
+            this.salesforceLabel.Visible = false;
+            // 
             // labelMouse
             // 
             this.labelMouse.AutoSize = true;
@@ -193,7 +206,7 @@
             this.button3.Size = new System.Drawing.Size(144, 137);
             this.button3.TabIndex = 1;
             this.button3.Text = " ";
-            this.toolTip1.SetToolTip(this.button3, "Move my mouse, so I can pretend I\'m online!");
+            this.toolTip1.SetToolTip(this.button3, "Click my left mouse button every 5 seconds, so I can pretend I\'m online!");
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -221,6 +234,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel3.Controls.Add(this.readMeButton);
             this.panel3.Controls.Add(this.progressLabel);
             this.panel3.Controls.Add(this.mainLabel);
             this.panel3.Controls.Add(this.label1);
@@ -249,6 +263,28 @@
             this.mainLabel.TabIndex = 5;
             this.mainLabel.Text = "Case Queue Dashboard";
             // 
+            // readmeTextBox
+            // 
+            this.readmeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.readmeTextBox.Location = new System.Drawing.Point(374, 265);
+            this.readmeTextBox.Multiline = true;
+            this.readmeTextBox.Name = "readmeTextBox";
+            this.readmeTextBox.ReadOnly = true;
+            this.readmeTextBox.Size = new System.Drawing.Size(598, 162);
+            this.readmeTextBox.TabIndex = 6;
+            this.readmeTextBox.Text = resources.GetString("readmeTextBox.Text");
+            this.readmeTextBox.Visible = false;
+            // 
+            // readMeButton
+            // 
+            this.readMeButton.Location = new System.Drawing.Point(884, 0);
+            this.readMeButton.Name = "readMeButton";
+            this.readMeButton.Size = new System.Drawing.Size(85, 28);
+            this.readMeButton.TabIndex = 7;
+            this.readMeButton.Text = "ReadMe";
+            this.readMeButton.UseVisualStyleBackColor = true;
+            this.readMeButton.Click += new System.EventHandler(this.readMeButton_Click);
+            // 
             // dragControl1
             // 
             this.dragControl1.SelectControl = this.panelHeader;
@@ -256,17 +292,6 @@
             // dragControl2
             // 
             this.dragControl2.SelectControl = this.panelLeft;
-            // 
-            // salesforceLabel
-            // 
-            this.salesforceLabel.AutoSize = true;
-            this.salesforceLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.salesforceLabel.Location = new System.Drawing.Point(56, 132);
-            this.salesforceLabel.Name = "salesforceLabel";
-            this.salesforceLabel.Size = new System.Drawing.Size(87, 21);
-            this.salesforceLabel.TabIndex = 9;
-            this.salesforceLabel.Text = "Logged in";
-            this.salesforceLabel.Visible = false;
             // 
             // Main
             // 
@@ -277,6 +302,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(201)))), ((int)(((byte)(22)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1199, 616);
+            this.Controls.Add(this.readmeTextBox);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panelHeader);
@@ -297,6 +323,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -324,6 +351,8 @@
         public System.Windows.Forms.Label monitorLabel;
         public System.Windows.Forms.Label labelMouse;
         public System.Windows.Forms.Label salesforceLabel;
+        private System.Windows.Forms.Button readMeButton;
+        private System.Windows.Forms.TextBox readmeTextBox;
     }
 }
 

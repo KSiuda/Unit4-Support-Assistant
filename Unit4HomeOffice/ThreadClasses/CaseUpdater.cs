@@ -78,6 +78,7 @@ namespace Unit4HomeOffice
                     {
                         if (cached != current)
                         {
+                            System.Media.SystemSounds.Beep.Play();
                             MessageBox.Show("YOUR PROGRESS HAS CHANGED!!!");
                         }
                     }
