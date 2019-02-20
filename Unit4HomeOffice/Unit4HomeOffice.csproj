@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AppSetting.cs" />
-    <Compile Include="Classes\DriverCreator.cs" />
+    <Compile Include="ThreadClasses\DriverCreator.cs" />
     <Compile Include="Classes\StringCipher.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>

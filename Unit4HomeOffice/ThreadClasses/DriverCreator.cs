@@ -4,21 +4,22 @@ using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 
-namespace Unit4HomeOffice.Classes
+namespace Unit4HomeOffice
 {
     public class DriverCreator
     {
-
+        private List<int> _driverProcessIDs;
 
         public IWebDriver CreateDriver(CaseUpdater updater, Configuration configuration, AppSetting setting, Main form)
         {
             configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            IEnumerable<int> pidsBefore = Process.GetProcessesByName("chrome").Select(p => p.Id);
+
             IWebDriver driver = GetNew(configuration);
             driver.Url = "https://u4.my.salesforce.com/";
             
@@ -29,7 +30,15 @@ namespace Unit4HomeOffice.Classes
             driver.FindElement(By.Id("username")).SendKeys(setting.GetUserName());
             driver.FindElement(By.Id("password")).SendKeys(setting.GetPassword() + OpenQA.Selenium.Keys.Enter);
 
+            
+
+            IEnumerable<int> pidsAfter = Process.GetProcessesByName("chrome").Select(p => p.Id);
+            IEnumerable<int> driverPids = pidsAfter.Except(pidsBefore);
+            List<int> driverslist = driverPids.ToList();
+            _driverProcessIDs.AddRange(driverslist);
+
             form.salesforceLabel.Invoke(new Action(() => form.salesforceLabel.Visible = true));
+
 
             return driver;
         }
@@ -51,6 +60,8 @@ namespace Unit4HomeOffice.Classes
             var chromeDriverService = ChromeDriverService.CreateDefaultService();
             chromeDriverService.HideCommandPromptWindow = true;
 
+            var driverProcessIds = new List<int> { chromeDriverService.ProcessId };
+            _driverProcessIDs = driverProcessIds;
             return new ChromeDriver(chromeDriverService, new ChromeOptions());
 
         }
@@ -66,12 +77,32 @@ namespace Unit4HomeOffice.Classes
 
         public void CheckAlive(IWebDriver driver, AppSetting setting, Main form)
         {
-            while(driver != null)
+            while (form != null)
             {
-                
-            }
+                foreach (var proces in _driverProcessIDs.ToList())
+                {
+                    try
+                    {
+                        Process.GetProcessById(proces);                       
+                    }
+                    catch
+                    {
+                        _driverProcessIDs.Remove(proces);
+                    }
+                }
+                if(_driverProcessIDs.Count() == 1)
+                {
+                    try
+                    {
+                        driver.Dispose();
+                        form.salesforceLabel.Invoke(new Action(() => form.salesforceLabel.Visible = false));
+                    }
+                    catch
+                    {
 
-            form.salesforceLabel.Invoke(new Action(() => form.salesforceLabel.Visible = false));
+                    }                  
+                }
+            }
         }
 
 

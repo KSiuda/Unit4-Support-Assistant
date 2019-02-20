@@ -3,8 +3,6 @@ using System.Configuration;
 using System.Threading;
 using System.Windows.Forms;
 using OpenQA.Selenium;
-using Unit4HomeOffice.Classes;
-using Unit4HomeOffice.WorkClasses;
 
 namespace Unit4HomeOffice
 {
@@ -20,6 +18,7 @@ namespace Unit4HomeOffice
 
         private Thread Mover;
         private Thread CaseUpdater;
+        private Thread AliveChecker;
 
         bool update = false;
         bool move = false;
@@ -48,12 +47,16 @@ namespace Unit4HomeOffice
             {
                 CaseUpdater.Abort();
             }
-            if(_driver != null)
+            if (AliveChecker != null && AliveChecker.IsAlive)
+            {
+                AliveChecker.Abort();
+            }
+
+            if (_driver != null)
             {
                 try
                 {
                     _driver.Close();
-
                 }
                 catch
                 {
@@ -99,15 +102,13 @@ namespace Unit4HomeOffice
             try
             {
                _driver = _creator.CreateDriver(_updater, _config, _setting, _main);
+               AliveChecker = _creator.DriverAliveChecker(_driver, _setting, _main);
+               AliveChecker.Start();
             }
             catch
             {
                 MessageBox.Show("Something went wrong");
             }
-            
-
-
-            //progressLabel.Text = progress.Text;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -115,7 +116,6 @@ namespace Unit4HomeOffice
             try
             {
                 var driver = _driver;
-
                
                 if(update == false)
                 {
@@ -128,7 +128,6 @@ namespace Unit4HomeOffice
                     update = false;
                     CaseUpdater.Abort();
                 }
-                
             }
             catch
             {
@@ -141,7 +140,5 @@ namespace Unit4HomeOffice
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
-
     }
 }
