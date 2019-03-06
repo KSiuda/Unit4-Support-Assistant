@@ -1632,9 +1632,6 @@
   <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>275, 17</value>
   </metadata>
-  <data name="readmeTextBox.Text" xml:space="preserve">
-    <value>This is Beta version of Unit4 Customer Support automated test software. It is not userproof yet! Please use it wisely. The Salesforce button will log you to the SalesForce, while the Monitor can be used to monitor your progress and wanr you about it's changes with text and sound, so you don't have to refresh you Salesforce constantly. The Robot is going to make your left mouse button click, so you don't show as inactive on Skype, if you would like to take a short break from your PC. Remember to turn it off! Enjoy!</value>
-  </data>
   <metadata name="dragControl1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>505, 17</value>
   </metadata>

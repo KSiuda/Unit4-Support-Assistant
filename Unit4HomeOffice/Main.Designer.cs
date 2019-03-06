@@ -50,10 +50,14 @@
             this.progressLabel = new System.Windows.Forms.Label();
             this.mainLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.readmeTextBox = new System.Windows.Forms.TextBox();
-            this.readMeButton = new System.Windows.Forms.Button();
             this.dragControl1 = new Unit4HomeOffice.WorkClasses.DragControl();
             this.dragControl2 = new Unit4HomeOffice.WorkClasses.DragControl();
+            this.casesListView = new System.Windows.Forms.ListView();
+            this.inProgHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.newcasesListView = new System.Windows.Forms.ListView();
+            this.newHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.removedCasesListView = new System.Windows.Forms.ListView();
+            this.removedHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUNIT4)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.panelLeft.SuspendLayout();
@@ -234,7 +238,6 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel3.Controls.Add(this.readMeButton);
             this.panel3.Controls.Add(this.progressLabel);
             this.panel3.Controls.Add(this.mainLabel);
             this.panel3.Controls.Add(this.label1);
@@ -263,28 +266,6 @@
             this.mainLabel.TabIndex = 5;
             this.mainLabel.Text = "Case Queue Dashboard";
             // 
-            // readmeTextBox
-            // 
-            this.readmeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.readmeTextBox.Location = new System.Drawing.Point(374, 265);
-            this.readmeTextBox.Multiline = true;
-            this.readmeTextBox.Name = "readmeTextBox";
-            this.readmeTextBox.ReadOnly = true;
-            this.readmeTextBox.Size = new System.Drawing.Size(598, 162);
-            this.readmeTextBox.TabIndex = 6;
-            this.readmeTextBox.Text = resources.GetString("readmeTextBox.Text");
-            this.readmeTextBox.Visible = false;
-            // 
-            // readMeButton
-            // 
-            this.readMeButton.Location = new System.Drawing.Point(884, 0);
-            this.readMeButton.Name = "readMeButton";
-            this.readMeButton.Size = new System.Drawing.Size(85, 28);
-            this.readMeButton.TabIndex = 7;
-            this.readMeButton.Text = "ReadMe";
-            this.readMeButton.UseVisualStyleBackColor = true;
-            this.readMeButton.Click += new System.EventHandler(this.readMeButton_Click);
-            // 
             // dragControl1
             // 
             this.dragControl1.SelectControl = this.panelHeader;
@@ -292,6 +273,60 @@
             // dragControl2
             // 
             this.dragControl2.SelectControl = this.panelLeft;
+            // 
+            // casesListView
+            // 
+            this.casesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.inProgHeader});
+            this.casesListView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.casesListView.Location = new System.Drawing.Point(200, 233);
+            this.casesListView.Name = "casesListView";
+            this.casesListView.Size = new System.Drawing.Size(169, 383);
+            this.casesListView.TabIndex = 6;
+            this.casesListView.UseCompatibleStateImageBehavior = false;
+            this.casesListView.View = System.Windows.Forms.View.Details;
+            // 
+            // inProgHeader
+            // 
+            this.inProgHeader.Text = "In Progress Cases";
+            this.inProgHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.inProgHeader.Width = 151;
+            // 
+            // newcasesListView
+            // 
+            this.newcasesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.newHeader});
+            this.newcasesListView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.newcasesListView.Location = new System.Drawing.Point(369, 233);
+            this.newcasesListView.Name = "newcasesListView";
+            this.newcasesListView.Size = new System.Drawing.Size(169, 383);
+            this.newcasesListView.TabIndex = 7;
+            this.newcasesListView.UseCompatibleStateImageBehavior = false;
+            this.newcasesListView.View = System.Windows.Forms.View.Details;
+            // 
+            // newHeader
+            // 
+            this.newHeader.Text = "New Cases";
+            this.newHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.newHeader.Width = 151;
+            // 
+            // removedCasesListView
+            // 
+            this.removedCasesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.removedHeader});
+            this.removedCasesListView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.removedCasesListView.Location = new System.Drawing.Point(538, 233);
+            this.removedCasesListView.Name = "removedCasesListView";
+            this.removedCasesListView.Size = new System.Drawing.Size(169, 383);
+            this.removedCasesListView.TabIndex = 8;
+            this.removedCasesListView.UseCompatibleStateImageBehavior = false;
+            this.removedCasesListView.View = System.Windows.Forms.View.Details;
+            // 
+            // removedHeader
+            // 
+            this.removedHeader.Text = "Removed Cases";
+            this.removedHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.removedHeader.Width = 151;
             // 
             // Main
             // 
@@ -302,7 +337,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(201)))), ((int)(((byte)(22)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1199, 616);
-            this.Controls.Add(this.readmeTextBox);
+            this.Controls.Add(this.removedCasesListView);
+            this.Controls.Add(this.newcasesListView);
+            this.Controls.Add(this.casesListView);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panelHeader);
@@ -323,7 +360,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -351,8 +387,12 @@
         public System.Windows.Forms.Label monitorLabel;
         public System.Windows.Forms.Label labelMouse;
         public System.Windows.Forms.Label salesforceLabel;
-        private System.Windows.Forms.Button readMeButton;
-        private System.Windows.Forms.TextBox readmeTextBox;
+        public System.Windows.Forms.ListView casesListView;
+        private System.Windows.Forms.ColumnHeader inProgHeader;
+        public System.Windows.Forms.ListView newcasesListView;
+        private System.Windows.Forms.ColumnHeader newHeader;
+        public System.Windows.Forms.ListView removedCasesListView;
+        private System.Windows.Forms.ColumnHeader removedHeader;
     }
 }
 

@@ -22,6 +22,7 @@ namespace Unit4HomeOffice
 
         bool update = false;
         bool move = false;
+        
 
 
 
@@ -141,16 +142,6 @@ namespace Unit4HomeOffice
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void readMeButton_Click(object sender, EventArgs e)
-        {
-            if(readmeTextBox.Visible == false)
-            {
-                readmeTextBox.Invoke(new Action(() => readmeTextBox.Visible = true));
-            }
-            else if(readmeTextBox.Visible == true)
-            {
-                readmeTextBox.Invoke(new Action(() => readmeTextBox.Visible = false));
-            }
-        }
+
     }
 }

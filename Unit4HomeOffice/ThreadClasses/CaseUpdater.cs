@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -14,8 +15,62 @@ namespace Unit4HomeOffice
             return new Thread(() => UpdateCases(driver,appSetting, update, form));
         }
 
+        void Populate(IWebDriver driver, Main form, List<string> cases)
+        {
+            foreach(var acase in cases)
+            {
+                ListViewItem Cases = new ListViewItem(acase);
+                form.casesListView.Invoke(new Action(() => form.casesListView.Items.Add(acase)));
+            }
+            
+        }
+
+        void Populate(IWebDriver driver, Main form, List<string> cases, List<string> newcases)
+        {
+            foreach (var acase in cases)
+            {
+                ListViewItem Cases = new ListViewItem(acase);
+                form.casesListView.Invoke(new Action(() => form.casesListView.Items.Add(acase)));
+
+            }
+            foreach(var acase in newcases)
+            {
+                 ListViewItem Cases = new ListViewItem(acase);
+                 form.casesListView.Invoke(new Action(() => form.newcasesListView.Items.Add(acase)));
+            }
+
+        }
+
+        void Populate(IWebDriver driver, Main form, List<string> cases, IEnumerable<string> removedcases)
+        {
+            foreach (var acase in cases)
+            {
+                ListViewItem Cases = new ListViewItem(acase);
+                form.casesListView.Invoke(new Action(() => form.casesListView.Items.Add(acase)));
+
+            }
+            foreach (var acase in removedcases)
+            {
+                ListViewItem Cases = new ListViewItem(acase);
+                form.casesListView.Invoke(new Action(() => form.removedCasesListView.Items.Add(acase)));
+            }
+
+        }
+
+        void ClearRemoved(Main form)
+        {
+            form.casesListView.Invoke(new Action(() => form.removedCasesListView.Items.Clear()));
+        }
+        void ClearNew(Main form)
+        {
+            form.casesListView.Invoke(new Action(() => form.newcasesListView.Items.Clear()));
+        }
+
         List<string> GetCurrentInProgressCases(IWebDriver driver)
         {
+            driver.Navigate().Refresh();
+            driver.SwitchTo().DefaultContent();
+
             var frame = driver.FindElement(By.CssSelector("#ext-comp-1005"));
             driver.SwitchTo().Frame(frame);
             var frame2 = driver.FindElement(By.CssSelector("#\\30 66w0000001Ft1W"));
@@ -38,13 +93,10 @@ namespace Unit4HomeOffice
                 }
             }
 
-            driver.Navigate().Refresh();
-            driver.SwitchTo().DefaultContent();
-
             return cases;
         }
 
-
+        #region oldsolution
         public string GetInProgress(IWebDriver driver)
         {
             var frame = driver.FindElement(By.CssSelector("#ext-comp-1005"));
@@ -58,6 +110,7 @@ namespace Unit4HomeOffice
 
             return progres;
         }
+        #endregion 
 
 
 
@@ -66,6 +119,10 @@ namespace Unit4HomeOffice
             int cached = 0;
             int count = 0;
             int current = 0;
+            List<string> cachedCases = null;
+            List<string> currentCases;
+            List<string> newCases;
+            List<string> removedCases;
 
             while (update)
             {
@@ -73,28 +130,72 @@ namespace Unit4HomeOffice
 
                 try
                 {
-                    var progres = GetInProgress(driver);
-                    if (progres.Length == 16)
-                    {
-                        Int32.TryParse((progres.Substring(13, 2)), out current);
-                    }
-                    else if (progres.Length == 15)
-                    {
-                        Int32.TryParse((progres.Substring(13, 1)), out current);
-                    }
+
+                    currentCases = new List<string>(GetCurrentInProgressCases(driver));
+                    current = currentCases.Count();
                     form.progressLabel.Invoke(new Action(() => form.progressLabel.Text = current.ToString()));
+
+
+                    if (count == 0)
+                    {
+                        Populate(driver, form, currentCases);
+                    }
+
+
                     if (count > 0)
                     {
+                        newCases = new List<string>(currentCases.AsEnumerable().Except(cachedCases.AsEnumerable()).ToList());
+                        removedCases = new List<string>(cachedCases.AsEnumerable().Except(currentCases.AsEnumerable()).ToList());
+
                         if (cached != current)
                         {
                             System.Media.SystemSounds.Beep.Play();
-                            MessageBox.Show("YOUR PROGRESS HAS CHANGED!!!");
+                            string gainedCases = string.Join(", ", newCases.ToArray());
+                            string lostCases = string.Join(", ", removedCases.ToArray());
+                            if(gainedCases.Length > 1)
+                            {
+                                MessageBox.Show($"YOUR PROGRESS HAS CHANGED!!! You have received cases: {gainedCases}");
+
+                            }
+                            if(lostCases.Length > 1)
+                            {
+                                MessageBox.Show($"Good job! Someone took: {lostCases} from you!");
+                            }
                         }
+                        
+
+                        if (newCases.Count() != 0 || removedCases.Count() != 0)
+                        {
+                            if(newCases.Count() != 0)
+                            {
+                                Populate(driver, form, currentCases, newCases);
+                            }
+                            if (removedCases.Count() != 0)
+                            {
+                                Populate(driver, form, currentCases, removedCases.AsEnumerable());
+                            }
+                        }
+                        if(removedCases.Count() == 0)
+                        {
+                            ClearRemoved(form);
+                        }
+                        if(newCases.Count() == 0)
+                        {
+                            ClearNew(form);
+                        }
+                        else
+                        {
+                            Populate(driver, form, currentCases);
+                        }
+
                     }
-                    //GetCurrentInProgressCases(driver);
-                    Thread.Sleep(appSetting.GetInterval());
+
+                    
+                    cachedCases = new List<string>(currentCases);
                     cached = current;
                     count++;
+
+                    Thread.Sleep(appSetting.GetInterval());
                 }
                 catch
                 {
@@ -103,8 +204,9 @@ namespace Unit4HomeOffice
                 }
                 
             }
-
             form.monitorLabel.Invoke(new Action(() => form.monitorLabel.Visible = false));
+
+
 
         }
 
