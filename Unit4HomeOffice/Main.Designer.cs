@@ -50,14 +50,14 @@
             this.progressLabel = new System.Windows.Forms.Label();
             this.mainLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.dragControl1 = new Unit4HomeOffice.WorkClasses.DragControl();
-            this.dragControl2 = new Unit4HomeOffice.WorkClasses.DragControl();
             this.casesListView = new System.Windows.Forms.ListView();
             this.inProgHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.newcasesListView = new System.Windows.Forms.ListView();
             this.newHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.removedCasesListView = new System.Windows.Forms.ListView();
             this.removedHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dragControl1 = new Unit4HomeOffice.WorkClasses.DragControl();
+            this.dragControl2 = new Unit4HomeOffice.WorkClasses.DragControl();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUNIT4)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.panelLeft.SuspendLayout();
@@ -83,9 +83,9 @@
             this.labelHO.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(135)))), ((int)(((byte)(142)))));
             this.labelHO.Location = new System.Drawing.Point(502, 38);
             this.labelHO.Name = "labelHO";
-            this.labelHO.Size = new System.Drawing.Size(494, 45);
+            this.labelHO.Size = new System.Drawing.Size(333, 45);
             this.labelHO.TabIndex = 1;
-            this.labelHO.Text = "Home Office Starter Pack";
+            this.labelHO.Text = "Support Assistant";
             // 
             // panelHeader
             // 
@@ -266,14 +266,6 @@
             this.mainLabel.TabIndex = 5;
             this.mainLabel.Text = "Case Queue Dashboard";
             // 
-            // dragControl1
-            // 
-            this.dragControl1.SelectControl = this.panelHeader;
-            // 
-            // dragControl2
-            // 
-            this.dragControl2.SelectControl = this.panelLeft;
-            // 
             // casesListView
             // 
             this.casesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -290,7 +282,7 @@
             // 
             this.inProgHeader.Text = "In Progress Cases";
             this.inProgHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.inProgHeader.Width = 151;
+            this.inProgHeader.Width = 165;
             // 
             // newcasesListView
             // 
@@ -306,9 +298,9 @@
             // 
             // newHeader
             // 
-            this.newHeader.Text = "New Cases";
+            this.newHeader.Text = "New in Progress";
             this.newHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.newHeader.Width = 151;
+            this.newHeader.Width = 163;
             // 
             // removedCasesListView
             // 
@@ -317,16 +309,24 @@
             this.removedCasesListView.Dock = System.Windows.Forms.DockStyle.Left;
             this.removedCasesListView.Location = new System.Drawing.Point(538, 233);
             this.removedCasesListView.Name = "removedCasesListView";
-            this.removedCasesListView.Size = new System.Drawing.Size(169, 383);
+            this.removedCasesListView.Size = new System.Drawing.Size(165, 383);
             this.removedCasesListView.TabIndex = 8;
             this.removedCasesListView.UseCompatibleStateImageBehavior = false;
             this.removedCasesListView.View = System.Windows.Forms.View.Details;
             // 
             // removedHeader
             // 
-            this.removedHeader.Text = "Removed Cases";
+            this.removedHeader.Text = "Gone from Progress";
             this.removedHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.removedHeader.Width = 151;
+            this.removedHeader.Width = 161;
+            // 
+            // dragControl1
+            // 
+            this.dragControl1.SelectControl = this.panelHeader;
+            // 
+            // dragControl2
+            // 
+            this.dragControl2.SelectControl = this.panelLeft;
             // 
             // Main
             // 
