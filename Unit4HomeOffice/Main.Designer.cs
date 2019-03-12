@@ -34,15 +34,15 @@
             this.labelHO = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonOptions = new System.Windows.Forms.Button();
+            this.buttonShutDown = new System.Windows.Forms.Button();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.salesforceLabel = new System.Windows.Forms.Label();
             this.labelMouse = new System.Windows.Forms.Label();
             this.monitorLabel = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonSF = new System.Windows.Forms.Button();
+            this.buttonRobot = new System.Windows.Forms.Button();
+            this.buttonActiveCheck = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -91,8 +91,8 @@
             // 
             this.panelHeader.BackColor = System.Drawing.SystemColors.Window;
             this.panelHeader.Controls.Add(this.button6);
-            this.panelHeader.Controls.Add(this.button4);
-            this.panelHeader.Controls.Add(this.button1);
+            this.panelHeader.Controls.Add(this.buttonOptions);
+            this.panelHeader.Controls.Add(this.buttonShutDown);
             this.panelHeader.Controls.Add(this.labelHO);
             this.panelHeader.Controls.Add(this.pictureBoxUNIT4);
             this.panelHeader.Cursor = System.Windows.Forms.Cursors.SizeAll;
@@ -115,30 +115,30 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button4
+            // buttonOptions
             // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(314, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(131, 111);
-            this.button4.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.button4, "Options");
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.buttonOptions.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonOptions.Image = ((System.Drawing.Image)(resources.GetObject("buttonOptions.Image")));
+            this.buttonOptions.Location = new System.Drawing.Point(314, 12);
+            this.buttonOptions.Name = "buttonOptions";
+            this.buttonOptions.Size = new System.Drawing.Size(131, 111);
+            this.buttonOptions.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.buttonOptions, "Options");
+            this.buttonOptions.UseVisualStyleBackColor = true;
+            this.buttonOptions.Click += new System.EventHandler(this.buttonOptions_Click);
             // 
-            // button1
+            // buttonShutDown
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(1062, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 114);
-            this.button1.TabIndex = 4;
-            this.button1.Text = " ";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.buttonShutDown.BackColor = System.Drawing.Color.White;
+            this.buttonShutDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonShutDown.Image = ((System.Drawing.Image)(resources.GetObject("buttonShutDown.Image")));
+            this.buttonShutDown.Location = new System.Drawing.Point(1062, 12);
+            this.buttonShutDown.Name = "buttonShutDown";
+            this.buttonShutDown.Size = new System.Drawing.Size(126, 114);
+            this.buttonShutDown.TabIndex = 4;
+            this.buttonShutDown.Text = " ";
+            this.buttonShutDown.UseVisualStyleBackColor = false;
+            this.buttonShutDown.Click += new System.EventHandler(this.buttonShutDown_Click_1);
             // 
             // panelLeft
             // 
@@ -146,9 +146,9 @@
             this.panelLeft.Controls.Add(this.salesforceLabel);
             this.panelLeft.Controls.Add(this.labelMouse);
             this.panelLeft.Controls.Add(this.monitorLabel);
-            this.panelLeft.Controls.Add(this.button5);
-            this.panelLeft.Controls.Add(this.button3);
-            this.panelLeft.Controls.Add(this.button2);
+            this.panelLeft.Controls.Add(this.buttonSF);
+            this.panelLeft.Controls.Add(this.buttonRobot);
+            this.panelLeft.Controls.Add(this.buttonActiveCheck);
             this.panelLeft.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLeft.Location = new System.Drawing.Point(0, 133);
@@ -189,42 +189,42 @@
             this.monitorLabel.Text = "Check active";
             this.monitorLabel.Visible = false;
             // 
-            // button5
+            // buttonSF
             // 
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(27, 6);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(144, 123);
-            this.button5.TabIndex = 2;
-            this.button5.Text = " ";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.buttonSF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSF.Image = ((System.Drawing.Image)(resources.GetObject("buttonSF.Image")));
+            this.buttonSF.Location = new System.Drawing.Point(27, 6);
+            this.buttonSF.Name = "buttonSF";
+            this.buttonSF.Size = new System.Drawing.Size(144, 123);
+            this.buttonSF.TabIndex = 2;
+            this.buttonSF.Text = " ";
+            this.buttonSF.UseVisualStyleBackColor = true;
+            this.buttonSF.Click += new System.EventHandler(this.buttonSF_Click);
             // 
-            // button3
+            // buttonRobot
             // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(27, 304);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(144, 137);
-            this.button3.TabIndex = 1;
-            this.button3.Text = " ";
-            this.toolTip1.SetToolTip(this.button3, "Click my left mouse button every 5 seconds, so I can pretend I\'m online!");
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.buttonRobot.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRobot.Image = ((System.Drawing.Image)(resources.GetObject("buttonRobot.Image")));
+            this.buttonRobot.Location = new System.Drawing.Point(27, 304);
+            this.buttonRobot.Name = "buttonRobot";
+            this.buttonRobot.Size = new System.Drawing.Size(144, 137);
+            this.buttonRobot.TabIndex = 1;
+            this.buttonRobot.Text = " ";
+            this.toolTip1.SetToolTip(this.buttonRobot, "Click my left mouse button every 5 seconds, so I can pretend I\'m online!");
+            this.buttonRobot.UseVisualStyleBackColor = true;
+            this.buttonRobot.Click += new System.EventHandler(this.buttonRobot_Click);
             // 
-            // button2
+            // buttonActiveCheck
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(27, 159);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(144, 107);
-            this.button2.TabIndex = 0;
-            this.button2.Text = " ";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonActiveCheck.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonActiveCheck.Image = ((System.Drawing.Image)(resources.GetObject("buttonActiveCheck.Image")));
+            this.buttonActiveCheck.Location = new System.Drawing.Point(27, 159);
+            this.buttonActiveCheck.Name = "buttonActiveCheck";
+            this.buttonActiveCheck.Size = new System.Drawing.Size(144, 107);
+            this.buttonActiveCheck.TabIndex = 0;
+            this.buttonActiveCheck.Text = " ";
+            this.buttonActiveCheck.UseVisualStyleBackColor = true;
+            this.buttonActiveCheck.Click += new System.EventHandler(this.buttonActiveCheck_Click);
             // 
             // label1
             // 
@@ -369,13 +369,13 @@
         private System.Windows.Forms.Label labelHO;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panelLeft;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonRobot;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonActiveCheck;
         private System.Windows.Forms.ToolTip toolTip2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button buttonShutDown;
+        private System.Windows.Forms.Button buttonOptions;
+        private System.Windows.Forms.Button buttonSF;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
         public System.Windows.Forms.Label progressLabel;

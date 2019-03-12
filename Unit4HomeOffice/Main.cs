@@ -38,7 +38,7 @@ namespace Unit4HomeOffice
         }
       
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void buttonShutDown_Click_1(object sender, EventArgs e)
         {
             if (Mover!= null && Mover.IsAlive)
             {
@@ -67,13 +67,13 @@ namespace Unit4HomeOffice
             Application.Exit();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonOptions_Click(object sender, EventArgs e)
         {
             var settings = new SettingsForm(_setting);
             settings.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonRobot_Click(object sender, EventArgs e)
         {
             
             if(move == false)
@@ -98,7 +98,7 @@ namespace Unit4HomeOffice
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void buttonSF_Click(object sender, EventArgs e)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace Unit4HomeOffice
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonActiveCheck_Click(object sender, EventArgs e)
         {
             try
             {
