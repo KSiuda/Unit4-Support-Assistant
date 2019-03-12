@@ -268,9 +268,12 @@
             // 
             // casesListView
             // 
+            this.casesListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(201)))), ((int)(((byte)(22)))));
+            this.casesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.casesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.inProgHeader});
             this.casesListView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.casesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.casesListView.Location = new System.Drawing.Point(200, 233);
             this.casesListView.Name = "casesListView";
             this.casesListView.Size = new System.Drawing.Size(169, 383);
@@ -286,9 +289,12 @@
             // 
             // newcasesListView
             // 
+            this.newcasesListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(201)))), ((int)(((byte)(22)))));
+            this.newcasesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.newcasesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.newHeader});
             this.newcasesListView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.newcasesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.newcasesListView.Location = new System.Drawing.Point(369, 233);
             this.newcasesListView.Name = "newcasesListView";
             this.newcasesListView.Size = new System.Drawing.Size(169, 383);
@@ -304,12 +310,16 @@
             // 
             // removedCasesListView
             // 
+            this.removedCasesListView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(201)))), ((int)(((byte)(22)))));
+            this.removedCasesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.removedCasesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.removedHeader});
             this.removedCasesListView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.removedCasesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.removedCasesListView.LabelWrap = false;
             this.removedCasesListView.Location = new System.Drawing.Point(538, 233);
             this.removedCasesListView.Name = "removedCasesListView";
-            this.removedCasesListView.Size = new System.Drawing.Size(165, 383);
+            this.removedCasesListView.Size = new System.Drawing.Size(164, 383);
             this.removedCasesListView.TabIndex = 8;
             this.removedCasesListView.UseCompatibleStateImageBehavior = false;
             this.removedCasesListView.View = System.Windows.Forms.View.Details;
