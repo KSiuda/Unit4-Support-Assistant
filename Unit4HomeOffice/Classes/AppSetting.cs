@@ -32,17 +32,20 @@ namespace Unit4HomeOffice
 
         public string GetPassword()
         {
-            // string password = StringCipher.Decrypt(config.AppSettings.Settings["password"].Value, "password");
-            // return password ;
-            return config.AppSettings.Settings["password"].Value;
+            string password = StringCipher.Decrypt(config.AppSettings.Settings["password"].Value, config.AppSettings.Settings["salt"].Value);
+            return password;
+            //return config.AppSettings.Settings["password"].Value;
         }
 
         public void SavePassword(string value)
         {
             config.AppSettings.Settings.Remove("password");
-            //string encryptedstring = StringCipher.Encrypt(value, "password");
-            //config.AppSettings.Settings.Add("password", encryptedstring);
-            config.AppSettings.Settings.Add("password", value);
+            config.AppSettings.Settings.Remove("salt");
+            string salt = StringCipher.GenerateSalt();
+            string encryptedstring = StringCipher.Encrypt(value, salt);
+            config.AppSettings.Settings.Add("password", encryptedstring);
+            config.AppSettings.Settings.Add("salt", salt);
+            //config.AppSettings.Settings.Add("password", value);
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
         }

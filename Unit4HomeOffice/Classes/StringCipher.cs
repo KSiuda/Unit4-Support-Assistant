@@ -101,6 +101,23 @@ namespace Unit4HomeOffice
                 }
                 return randomBytes;
             }
+
+            public static string GenerateSalt()
+            {
+                char[] signs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".ToCharArray();
+                Random rand = new Random();
+                string salt = "";
+                int saltLength = 8;
+                
+                for (int i=0; i<saltLength; i++)
+                {
+                    int sign_indx = rand.Next(0, signs.Length - 1);
+                    salt += signs[sign_indx];
+                }
+
+                return salt;
+            }
+
         }
 }
 
