@@ -128,6 +128,10 @@ namespace Unit4HomeOffice
                 {
                     update = false;
                     CaseUpdater.Abort();
+                    monitorLabel.Visible = false;
+                    progressLabel.Text = "";
+                    casesListView.Items.Clear();
+
                 }
             }
             catch
