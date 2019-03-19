@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -15,55 +16,89 @@ namespace Unit4HomeOffice
             return new Thread(() => UpdateCases(driver,appSetting, update, form));
         }
 
-        void Populate(IWebDriver driver, Main form, List<string> cases)
+        void Populate(IWebDriver driver, ListView casesListView, List<string> cases)
         {
-            foreach(var acase in cases)
+            if (cases.Count > 0)
             {
-                ListViewItem Cases = new ListViewItem(acase);
-                form.casesListView.Invoke(new Action(() => form.casesListView.Items.Add(acase)));
+                ChangeToWhite(casesListView);
             }
-            
-        }
-
-        void Populate(IWebDriver driver, Main form, List<string> cases, List<string> newcases)
-        {
             foreach (var acase in cases)
             {
                 ListViewItem Cases = new ListViewItem(acase);
-                form.casesListView.Invoke(new Action(() => form.casesListView.Items.Add(acase)));
+                casesListView.Invoke(new Action(() => casesListView.Items.Add(acase)));
+            }
+        }
+
+        void Populate(IWebDriver driver, ListView casesListView, ListView newCasesListView, List<string> cases, List<string> newcases)
+        {
+            if (cases.Count > 0)
+            {
+                ChangeToWhite(casesListView);
+            }
+            foreach (var acase in cases)
+            {
+                ListViewItem Cases = new ListViewItem(acase);
+                casesListView.Invoke(new Action(() => casesListView.Items.Add(acase)));
+                
 
             }
-            foreach(var acase in newcases)
+            if (cases.Count > 0)
+            {
+                ChangeToWhite(newCasesListView);
+            }
+            foreach (var acase in newcases)
             {
                  ListViewItem Cases = new ListViewItem(acase);
-                 form.casesListView.Invoke(new Action(() => form.newcasesListView.Items.Add(acase)));
+                 newCasesListView.Invoke(new Action(() => newCasesListView.Items.Add(acase)));
+                 
             }
-
         }
 
-        void Populate(IWebDriver driver, Main form, List<string> cases, IEnumerable<string> removedcases)
+        void Populate(IWebDriver driver, ListView casesListView,ListView removedCasesListView, List<string> cases, IEnumerable<string> removedcases)
         {
+            if (cases.Count > 0)
+            {
+                ChangeToWhite(casesListView);
+            }
             foreach (var acase in cases)
             {
                 ListViewItem Cases = new ListViewItem(acase);
-                form.casesListView.Invoke(new Action(() => form.casesListView.Items.Add(acase)));
+                casesListView.Invoke(new Action(() => casesListView.Items.Add(acase)));
+               
 
+            }
+            if (cases.Count > 0)
+            {
+                ChangeToWhite(removedCasesListView);
             }
             foreach (var acase in removedcases)
             {
                 ListViewItem Cases = new ListViewItem(acase);
-                form.casesListView.Invoke(new Action(() => form.removedCasesListView.Items.Add(acase)));
+                removedCasesListView.Invoke(new Action(() => removedCasesListView.Items.Add(acase)));
+              
             }
-
         }
 
-        void ClearRemoved(Main form)
+        void ChangeToWhite(ListView element)
         {
-            form.casesListView.Invoke(new Action(() => form.removedCasesListView.Items.Clear()));
+            Color color = Color.FromName("WhiteSmoke");
+            element.Invoke(new Action(() => element.BackColor = color ));
         }
-        void ClearNew(Main form)
+        void ChangeToBackground(ListView element)
         {
-            form.casesListView.Invoke(new Action(() => form.newcasesListView.Items.Clear()));
+            Color color = Color.FromArgb(160, 201, 22);
+            element.Invoke(new Action(() => element.BackColor = color));
+        }
+
+        void ClearRemoved(ListView removedCasesListView)
+        {
+            removedCasesListView.Invoke(new Action(() => removedCasesListView.Items.Clear()));
+            ChangeToBackground(removedCasesListView);
+        }
+        void ClearNew(ListView newCasesListView)
+        {
+            newCasesListView.Invoke(new Action(() => newCasesListView.Items.Clear()));
+            ChangeToBackground(newCasesListView);
         }
 
         List<string> GetCurrentInProgressCases(IWebDriver driver)
@@ -123,6 +158,9 @@ namespace Unit4HomeOffice
             List<string> currentCases;
             List<string> newCases;
             List<string> removedCases;
+            var casesList = form.casesListView;
+            var newCasesList = form.newcasesListView;
+            var removedCasesList = form.removedCasesListView;
 
             while (update)
             {
@@ -138,7 +176,7 @@ namespace Unit4HomeOffice
 
                     if (count == 0)
                     {
-                        Populate(driver, form, currentCases);
+                        Populate(driver, casesList, currentCases);
                     }
 
 
@@ -168,24 +206,24 @@ namespace Unit4HomeOffice
                         {
                             if(newCases.Count() != 0)
                             {
-                                Populate(driver, form, currentCases, newCases);
+                                Populate(driver, casesList,newCasesList, currentCases, newCases);
                             }
                             if (removedCases.Count() != 0)
                             {
-                                Populate(driver, form, currentCases, removedCases.AsEnumerable());
+                                Populate(driver, casesList, removedCasesList, currentCases, removedCases.AsEnumerable());
                             }
                         }
                         if(removedCases.Count() == 0)
                         {
-                            ClearRemoved(form);
+                            ClearRemoved(removedCasesList);
                         }
                         if(newCases.Count() == 0)
                         {
-                            ClearNew(form);
+                            ClearNew(newCasesList);
                         }
                         else
                         {
-                            Populate(driver, form, currentCases);
+                            Populate(driver, casesList, currentCases);
                         }
 
                     }

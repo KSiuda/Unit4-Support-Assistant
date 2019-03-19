@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using OpenQA.Selenium;
@@ -15,6 +16,7 @@ namespace Unit4HomeOffice
         CaseUpdater _updater;
         Main _main;
         DriverCreator _creator;
+        Color color = Color.FromArgb(160, 201, 22);
 
         private Thread Mover;
         private Thread CaseUpdater;
@@ -131,6 +133,7 @@ namespace Unit4HomeOffice
                     monitorLabel.Visible = false;
                     progressLabel.Text = "";
                     casesListView.Items.Clear();
+                    casesListView.BackColor = color;
 
                 }
             }
