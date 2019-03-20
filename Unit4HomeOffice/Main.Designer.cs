@@ -81,7 +81,7 @@
             this.labelHO.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelHO.Font = new System.Drawing.Font("Century Gothic", 28F);
             this.labelHO.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(135)))), ((int)(((byte)(142)))));
-            this.labelHO.Location = new System.Drawing.Point(502, 38);
+            this.labelHO.Location = new System.Drawing.Point(563, 38);
             this.labelHO.Name = "labelHO";
             this.labelHO.Size = new System.Drawing.Size(333, 45);
             this.labelHO.TabIndex = 1;
@@ -100,14 +100,14 @@
             this.panelHeader.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1199, 133);
+            this.panelHeader.Size = new System.Drawing.Size(1187, 133);
             this.panelHeader.TabIndex = 2;
             // 
             // button6
             // 
             this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.Location = new System.Drawing.Point(1045, 12);
+            this.button6.Location = new System.Drawing.Point(1045, 9);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(20, 25);
             this.button6.TabIndex = 6;
@@ -132,7 +132,7 @@
             this.buttonShutDown.BackColor = System.Drawing.Color.White;
             this.buttonShutDown.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonShutDown.Image = ((System.Drawing.Image)(resources.GetObject("buttonShutDown.Image")));
-            this.buttonShutDown.Location = new System.Drawing.Point(1062, 12);
+            this.buttonShutDown.Location = new System.Drawing.Point(1061, 9);
             this.buttonShutDown.Name = "buttonShutDown";
             this.buttonShutDown.Size = new System.Drawing.Size(126, 114);
             this.buttonShutDown.TabIndex = 4;
@@ -244,7 +244,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(200, 133);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(999, 100);
+            this.panel3.Size = new System.Drawing.Size(987, 100);
             this.panel3.TabIndex = 5;
             // 
             // progressLabel
@@ -260,7 +260,7 @@
             // 
             this.mainLabel.AutoSize = true;
             this.mainLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.mainLabel.Location = new System.Drawing.Point(387, 3);
+            this.mainLabel.Location = new System.Drawing.Point(424, 6);
             this.mainLabel.Name = "mainLabel";
             this.mainLabel.Size = new System.Drawing.Size(199, 21);
             this.mainLabel.TabIndex = 5;
@@ -346,7 +346,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(201)))), ((int)(((byte)(22)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1199, 616);
+            this.ClientSize = new System.Drawing.Size(1187, 616);
             this.Controls.Add(this.removedCasesListView);
             this.Controls.Add(this.newcasesListView);
             this.Controls.Add(this.casesListView);

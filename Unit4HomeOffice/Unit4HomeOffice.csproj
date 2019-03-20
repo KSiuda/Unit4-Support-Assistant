@@ -63,7 +63,14 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -84,7 +91,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AppSetting.cs" />
-    <Compile Include="ThreadClasses\DriverCreator.cs" />
+    <Compile Include="Entities\Base\EntityBase.cs" />
+    <Compile Include="Entities\Consultants.cs" />
+    <Compile Include="Entities\Context.cs" />
+    <Compile Include="Entities\TrainingDetails.cs" />
+    <Compile Include="Entities\Trainings.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Services\DriverCreator.cs" />
     <Compile Include="Classes\StringCipher.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -93,11 +106,11 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="System\Management\ManagementObjectSearcher.cs" />
-    <Compile Include="ThreadClasses\CaseUpdater.cs" />
+    <Compile Include="Services\CaseUpdater.cs" />
     <Compile Include="Components\DragControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ThreadClasses\MouseClicker.cs" />
+    <Compile Include="Services\MouseClicker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsForm.cs">
