@@ -97,6 +97,7 @@
     <Compile Include="Entities\TrainingDetails.cs" />
     <Compile Include="Entities\Trainings.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Services\AutoDispatcher.cs" />
     <Compile Include="Services\DriverCreator.cs" />
     <Compile Include="Classes\StringCipher.cs" />
     <Compile Include="Main.cs">
