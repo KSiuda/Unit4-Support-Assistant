@@ -64,6 +64,8 @@ namespace Unit4HomeOffice
             textBoxUserName.Text = _setting.GetUserName();
             textBoxPassword.Text = _setting.GetPassword();
             intervalTextBox.Text = (_setting.GetInterval() / 60000).ToString();
+            genericsTabTextBox.Text = (_setting.GetGenericsTab()).ToString();
+            mainQueueTextBox.Text = (_setting.GetMainQueueTab()).ToString();
         }
 
         private void checkBoxFirefox_CheckedChanged(object sender, EventArgs e)

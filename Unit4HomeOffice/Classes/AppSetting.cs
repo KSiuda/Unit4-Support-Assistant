@@ -77,6 +77,35 @@ namespace Unit4HomeOffice
             config.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
         }
+
+        public void SaveGenericsTab(string value)
+        {
+            config.AppSettings.Settings.Remove("genericsTab");
+            config.AppSettings.Settings.Add("genericsTab", value);
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
+        }
+        public int GetGenericsTab()
+        {
+            var tab = Convert.ToInt32(config.AppSettings.Settings["genericsTab"].Value);
+
+            return tab;
+        }
+
+        public void SaveMainQueueTab(string value)
+        {
+            config.AppSettings.Settings.Remove("mainQueueTab");
+            config.AppSettings.Settings.Add("mainQueueTab", value);
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
+        }
+
+        public int GetMainQueueTab()
+        {
+            var tab = Convert.ToInt32(config.AppSettings.Settings["mainQueueTab"].Value);
+
+            return tab;
+        }
     }
 }
 
