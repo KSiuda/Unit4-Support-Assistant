@@ -33,6 +33,7 @@
             this.pictureBoxUNIT4 = new System.Windows.Forms.PictureBox();
             this.labelHO = new System.Windows.Forms.Label();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.buttonOptions = new System.Windows.Forms.Button();
             this.buttonShutDown = new System.Windows.Forms.Button();
@@ -81,7 +82,7 @@
             this.labelHO.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelHO.Font = new System.Drawing.Font("Century Gothic", 28F);
             this.labelHO.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(135)))), ((int)(((byte)(142)))));
-            this.labelHO.Location = new System.Drawing.Point(563, 38);
+            this.labelHO.Location = new System.Drawing.Point(639, 38);
             this.labelHO.Name = "labelHO";
             this.labelHO.Size = new System.Drawing.Size(333, 45);
             this.labelHO.TabIndex = 1;
@@ -90,6 +91,7 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.SystemColors.Window;
+            this.panelHeader.Controls.Add(this.button1);
             this.panelHeader.Controls.Add(this.button6);
             this.panelHeader.Controls.Add(this.buttonOptions);
             this.panelHeader.Controls.Add(this.buttonShutDown);
@@ -102,6 +104,17 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1187, 133);
             this.panelHeader.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(447, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 111);
+            this.button1.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.button1, "Options");
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
@@ -119,7 +132,7 @@
             // 
             this.buttonOptions.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonOptions.Image = ((System.Drawing.Image)(resources.GetObject("buttonOptions.Image")));
-            this.buttonOptions.Location = new System.Drawing.Point(314, 12);
+            this.buttonOptions.Location = new System.Drawing.Point(300, 12);
             this.buttonOptions.Name = "buttonOptions";
             this.buttonOptions.Size = new System.Drawing.Size(131, 111);
             this.buttonOptions.TabIndex = 5;
@@ -260,7 +273,7 @@
             // 
             this.mainLabel.AutoSize = true;
             this.mainLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.mainLabel.Location = new System.Drawing.Point(424, 6);
+            this.mainLabel.Location = new System.Drawing.Point(500, 6);
             this.mainLabel.Name = "mainLabel";
             this.mainLabel.Size = new System.Drawing.Size(199, 21);
             this.mainLabel.TabIndex = 5;
@@ -403,6 +416,7 @@
         private System.Windows.Forms.ColumnHeader newHeader;
         public System.Windows.Forms.ListView removedCasesListView;
         private System.Windows.Forms.ColumnHeader removedHeader;
+        private System.Windows.Forms.Button button1;
     }
 }
 
