@@ -95,10 +95,10 @@ namespace Unit4HomeOffice.Services
                     i++;
                 }
             }
-
-            Thread.Sleep(3000);
+          
             driver.Navigate().Refresh();
             driver.SwitchTo().DefaultContent();
+            Thread.Sleep(5000);
 
             return cases;
         }

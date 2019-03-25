@@ -59,6 +59,10 @@ namespace Unit4HomeOffice
             {
                 AliveChecker.Abort();
             }
+            if (AutoDispatcher != null && AutoDispatcher.IsAlive)
+            {
+                AutoDispatcher.Abort();
+            }
 
             if (_driver != null)
             {
