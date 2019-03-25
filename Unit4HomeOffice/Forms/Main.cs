@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using OpenQA.Selenium;
+using Unit4HomeOffice.Services;
 
 namespace Unit4HomeOffice
 {
@@ -14,6 +15,7 @@ namespace Unit4HomeOffice
         AppSetting _setting;
         MouseClicker _mover;
         CaseUpdater _updater;
+        AutoDispatcher _autoDispatcher;
         Main _main;
         DriverCreator _creator;
         Color color = Color.FromArgb(160, 201, 22);
@@ -21,20 +23,23 @@ namespace Unit4HomeOffice
         private Thread Mover;
         private Thread CaseUpdater;
         private Thread AliveChecker;
+        private Thread AutoDispatcher;
 
         bool update = false;
         bool move = false;
+        bool dispatch = false;
         
 
 
 
-        public Main(AppSetting setting, MouseClicker mover, CaseUpdater updater, DriverCreator creator)
+        public Main(AppSetting setting, MouseClicker mover, CaseUpdater updater, DriverCreator creator, AutoDispatcher autoDispatcher)
         {
             _setting = setting;
             _mover = mover;
             _updater = updater;
             _config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             _creator = creator;
+            _autoDispatcher = autoDispatcher;
             _main = this;
             InitializeComponent();
         }
@@ -149,6 +154,36 @@ namespace Unit4HomeOffice
             this.WindowState = FormWindowState.Minimized;
         }
 
+        private void buttonDispatch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var driver = _driver;
 
+                if (dispatch == false)
+                {
+                    dispatch = true;
+                    AutoDispatcher = _autoDispatcher.AutoDispatching(driver, _setting, dispatch, _main);
+                    AutoDispatcher.Start();
+                }
+                else
+                {
+                    dispatch = false;
+                    AutoDispatcher.Abort();
+                    dispatchLabel.Visible = false;
+
+                    mainQueueListView.Items.Clear();
+                    mainQueueListView.BackColor = color;
+
+                    GenericsListView.Items.Clear();
+                    GenericsListView.BackColor = color;
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Please log in to the Salesforce first!");
+            }
+        }
     }
 }

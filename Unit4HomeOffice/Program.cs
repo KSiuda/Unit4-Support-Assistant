@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Unit4HomeOffice.Services;
 
 namespace Unit4HomeOffice
 {
@@ -17,7 +18,8 @@ namespace Unit4HomeOffice
             MouseClicker mover = new MouseClicker();
             CaseUpdater updater = new CaseUpdater();
             DriverCreator creator = new DriverCreator();
-            Application.Run(new Main(setting, mover, updater, creator));
+            AutoDispatcher dispatcher = new AutoDispatcher();
+            Application.Run(new Main(setting, mover, updater, creator, dispatcher));
             
 
             

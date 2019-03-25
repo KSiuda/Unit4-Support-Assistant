@@ -5,6 +5,8 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace Unit4HomeOffice.Services
 {
@@ -15,9 +17,36 @@ namespace Unit4HomeOffice.Services
             return new Thread(() => AutoDispatch(driver, appSetting, dispatch, form));
         }
 
-        public void AutoDispatch(IWebDriver driver, AppSetting appSetting, bool dispatch, Main main)
+        public void AutoDispatch(IWebDriver driver, AppSetting appSetting, bool dispatch, Main form)
         {
+            List<Tuple<string, string, string, string, string>> mainQueue;
+            List<Tuple<string, string, string, string, string>> Generics;
 
+            while (dispatch)
+            {
+                form.dispatchLabel.Invoke(new Action(() => form.dispatchLabel.Visible = true));
+
+                try
+                {
+                    mainQueue = CheckQueue(driver, appSetting.GetMainQueueTab());
+                    Populate(driver, form.mainQueueListView, mainQueue);
+
+                    Generics = CheckQueue(driver, appSetting.GetGenericsTab());
+                    Populate(driver, form.GenericsListView, Generics);
+
+                    Thread.Sleep(appSetting.GetInterval());
+
+                }
+                catch (System.Threading.ThreadAbortException)
+                {
+                    dispatch = false;
+                }
+                catch
+                {
+                    MessageBox.Show("Please log in to the Salesforce first or maximize the automated browser!");
+                    dispatch = false;
+                }
+            }
         }
 
         List<Tuple<string, string, string, string, string>> CheckQueue(IWebDriver driver, int tabNumber)
@@ -67,10 +96,45 @@ namespace Unit4HomeOffice.Services
                 }
             }
 
+            Thread.Sleep(3000);
             driver.Navigate().Refresh();
             driver.SwitchTo().DefaultContent();
 
             return cases;
+        }
+
+        void Populate(IWebDriver driver, ListView queueListView, List<Tuple<string, string, string, string, string>> cases)
+        {
+            queueListView.Invoke(new Action(() => queueListView.Items.Clear()));           
+            if (cases.Count > 0)
+            {
+                ChangeToWhite(queueListView);
+            }
+            else
+            {
+                ChangeToBackground(queueListView);
+            }
+            foreach (var acase in cases)
+            {
+                acase.Deconstruct(out string item1, out string item2, out string item3, out string item4, out string item5);
+                ListViewItem Cases = new ListViewItem(item1);
+                Cases.SubItems.Add(item2);
+                Cases.SubItems.Add(item3);
+                Cases.SubItems.Add(item4);
+                Cases.SubItems.Add(item5);
+                queueListView.Invoke(new Action(() => queueListView.Items.Add(Cases)));
+            }           
+        }
+
+        void ChangeToWhite(ListView element)
+        {
+            Color color = Color.FromName("WhiteSmoke");
+            element.Invoke(new Action(() => element.BackColor = color));
+        }
+        void ChangeToBackground(ListView element)
+        {
+            Color color = Color.FromArgb(160, 201, 22);
+            element.Invoke(new Action(() => element.BackColor = color));
         }
     }
 }
