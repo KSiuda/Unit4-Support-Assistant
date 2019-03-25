@@ -96,6 +96,12 @@
     <Compile Include="Entities\Context.cs" />
     <Compile Include="Entities\TrainingDetails.cs" />
     <Compile Include="Entities\Trainings.cs" />
+    <Compile Include="Forms\ConsultantsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConsultantsForm.Designer.cs">
+      <DependentUpon>ConsultantsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\AutoDispatcher.cs" />
     <Compile Include="Services\DriverCreator.cs" />
@@ -120,6 +126,9 @@
     <Compile Include="Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\ConsultantsForm.resx">
+      <DependentUpon>ConsultantsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,7 +157,9 @@
     <None Include="Unit4HomeOffice_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">

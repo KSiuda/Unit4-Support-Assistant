@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Unit4HomeOffice.Entities;
 using Unit4HomeOffice.Services;
 
 namespace Unit4HomeOffice
@@ -19,8 +20,9 @@ namespace Unit4HomeOffice
             CaseUpdater updater = new CaseUpdater();
             DriverCreator creator = new DriverCreator();
             AutoDispatcher dispatcher = new AutoDispatcher();
-            Application.Run(new Main(setting, mover, updater, creator, dispatcher));
-            
+            Context context = new Context();
+            Application.Run(new Main(setting, mover, updater, creator, dispatcher, context));
+
 
             
             

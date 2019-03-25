@@ -51,6 +51,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.genericsTabTextBox = new System.Windows.Forms.TextBox();
             this.mainQueueTextBox = new System.Windows.Forms.TextBox();
+            this.mainQueueName = new System.Windows.Forms.Label();
+            this.textBoxMainQueueName = new System.Windows.Forms.TextBox();
             this.panelLeft.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUNIT4)).BeginInit();
@@ -64,7 +66,7 @@
             this.checkBoxFirefox.Location = new System.Drawing.Point(33, 234);
             this.checkBoxFirefox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxFirefox.Name = "checkBoxFirefox";
-            this.checkBoxFirefox.Size = new System.Drawing.Size(138, 144);
+            this.checkBoxFirefox.Size = new System.Drawing.Size(141, 148);
             this.checkBoxFirefox.TabIndex = 0;
             this.checkBoxFirefox.Text = "use Firefox";
             this.checkBoxFirefox.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -80,7 +82,7 @@
             this.checkBoxChrome.Location = new System.Drawing.Point(31, 32);
             this.checkBoxChrome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBoxChrome.Name = "checkBoxChrome";
-            this.checkBoxChrome.Size = new System.Drawing.Size(140, 142);
+            this.checkBoxChrome.Size = new System.Drawing.Size(143, 146);
             this.checkBoxChrome.TabIndex = 1;
             this.checkBoxChrome.Text = "use Chrome";
             this.checkBoxChrome.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -94,7 +96,7 @@
             this.usernameLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usernameLabel.Location = new System.Drawing.Point(232, 183);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(173, 21);
+            this.usernameLabel.Size = new System.Drawing.Size(219, 23);
             this.usernameLabel.TabIndex = 2;
             this.usernameLabel.Text = "SalesForce Username";
             // 
@@ -104,7 +106,7 @@
             this.passwordLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordLabel.Location = new System.Drawing.Point(232, 218);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(167, 21);
+            this.passwordLabel.Size = new System.Drawing.Size(214, 23);
             this.passwordLabel.TabIndex = 3;
             this.passwordLabel.Text = "SalesForce Password";
             // 
@@ -125,7 +127,7 @@
             this.textBoxUserName.Location = new System.Drawing.Point(423, 186);
             this.textBoxUserName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxUserName.Name = "textBoxUserName";
-            this.textBoxUserName.Size = new System.Drawing.Size(270, 20);
+            this.textBoxUserName.Size = new System.Drawing.Size(270, 22);
             this.textBoxUserName.TabIndex = 5;
             // 
             // textBoxPassword
@@ -134,7 +136,7 @@
             this.textBoxPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(270, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(270, 22);
             this.textBoxPassword.TabIndex = 6;
             // 
             // button1
@@ -154,7 +156,7 @@
             this.intervalLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.intervalLabel.Location = new System.Drawing.Point(232, 149);
             this.intervalLabel.Name = "intervalLabel";
-            this.intervalLabel.Size = new System.Drawing.Size(373, 21);
+            this.intervalLabel.Size = new System.Drawing.Size(467, 23);
             this.intervalLabel.TabIndex = 8;
             this.intervalLabel.Text = "Interval of checking for new cases (in minutes):";
             // 
@@ -163,7 +165,7 @@
             this.intervalTextBox.Location = new System.Drawing.Point(663, 154);
             this.intervalTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.intervalTextBox.Name = "intervalTextBox";
-            this.intervalTextBox.Size = new System.Drawing.Size(30, 20);
+            this.intervalTextBox.Size = new System.Drawing.Size(30, 22);
             this.intervalTextBox.TabIndex = 9;
             // 
             // panelHeader
@@ -214,7 +216,7 @@
             this.DispatcherSetupMainLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DispatcherSetupMainLabel.Location = new System.Drawing.Point(448, 253);
             this.DispatcherSetupMainLabel.Name = "DispatcherSetupMainLabel";
-            this.DispatcherSetupMainLabel.Size = new System.Drawing.Size(208, 21);
+            this.DispatcherSetupMainLabel.Size = new System.Drawing.Size(253, 23);
             this.DispatcherSetupMainLabel.TabIndex = 11;
             this.DispatcherSetupMainLabel.Text = "Dispatcher configuration:";
             // 
@@ -224,7 +226,7 @@
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(238, 302);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 21);
+            this.label1.Size = new System.Drawing.Size(224, 23);
             this.label1.TabIndex = 12;
             this.label1.Text = "Generics Tab number:";
             // 
@@ -234,7 +236,7 @@
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(238, 335);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(206, 21);
+            this.label2.Size = new System.Drawing.Size(254, 23);
             this.label2.TabIndex = 13;
             this.label2.Text = "Main queue tab number:";
             // 
@@ -243,7 +245,7 @@
             this.genericsTabTextBox.Location = new System.Drawing.Point(452, 302);
             this.genericsTabTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.genericsTabTextBox.Name = "genericsTabTextBox";
-            this.genericsTabTextBox.Size = new System.Drawing.Size(33, 20);
+            this.genericsTabTextBox.Size = new System.Drawing.Size(33, 22);
             this.genericsTabTextBox.TabIndex = 14;
             // 
             // mainQueueTextBox
@@ -251,14 +253,34 @@
             this.mainQueueTextBox.Location = new System.Drawing.Point(452, 336);
             this.mainQueueTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mainQueueTextBox.Name = "mainQueueTextBox";
-            this.mainQueueTextBox.Size = new System.Drawing.Size(33, 20);
+            this.mainQueueTextBox.Size = new System.Drawing.Size(33, 22);
             this.mainQueueTextBox.TabIndex = 15;
+            // 
+            // mainQueueName
+            // 
+            this.mainQueueName.AutoSize = true;
+            this.mainQueueName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainQueueName.Location = new System.Drawing.Point(238, 368);
+            this.mainQueueName.Name = "mainQueueName";
+            this.mainQueueName.Size = new System.Drawing.Size(195, 23);
+            this.mainQueueName.TabIndex = 16;
+            this.mainQueueName.Text = "Main queue name:";
+            // 
+            // textBoxMainQueueName
+            // 
+            this.textBoxMainQueueName.Location = new System.Drawing.Point(439, 368);
+            this.textBoxMainQueueName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxMainQueueName.Name = "textBoxMainQueueName";
+            this.textBoxMainQueueName.Size = new System.Drawing.Size(53, 22);
+            this.textBoxMainQueueName.TabIndex = 17;
             // 
             // SettingsForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(855, 440);
+            this.Controls.Add(this.textBoxMainQueueName);
+            this.Controls.Add(this.mainQueueName);
             this.Controls.Add(this.mainQueueTextBox);
             this.Controls.Add(this.genericsTabTextBox);
             this.Controls.Add(this.label2);
@@ -312,5 +334,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox genericsTabTextBox;
         private System.Windows.Forms.TextBox mainQueueTextBox;
+        private System.Windows.Forms.Label mainQueueName;
+        private System.Windows.Forms.TextBox textBoxMainQueueName;
     }
 }

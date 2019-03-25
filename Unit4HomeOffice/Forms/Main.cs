@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using OpenQA.Selenium;
+using Unit4HomeOffice.Entities;
+using Unit4HomeOffice.Forms;
 using Unit4HomeOffice.Services;
 
 namespace Unit4HomeOffice
@@ -18,6 +20,7 @@ namespace Unit4HomeOffice
         AutoDispatcher _autoDispatcher;
         Main _main;
         DriverCreator _creator;
+        Context _context;
         Color color = Color.FromArgb(160, 201, 22);
 
         private Thread Mover;
@@ -32,7 +35,7 @@ namespace Unit4HomeOffice
 
 
 
-        public Main(AppSetting setting, MouseClicker mover, CaseUpdater updater, DriverCreator creator, AutoDispatcher autoDispatcher)
+        public Main(AppSetting setting, MouseClicker mover, CaseUpdater updater, DriverCreator creator, AutoDispatcher autoDispatcher, Context context)
         {
             _setting = setting;
             _mover = mover;
@@ -40,6 +43,7 @@ namespace Unit4HomeOffice
             _config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             _creator = creator;
             _autoDispatcher = autoDispatcher;
+            _context = context;
             _main = this;
             InitializeComponent();
         }
@@ -188,6 +192,12 @@ namespace Unit4HomeOffice
             {
                 MessageBox.Show("Please log in to the Salesforce first!");
             }
+        }
+
+        private void ConsultantsFormButton_Click(object sender, EventArgs e)
+        {
+            var consultants = new ConsultantsForm(_context);
+            consultants.Show();
         }
     }
 }
