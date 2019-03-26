@@ -195,7 +195,7 @@ namespace Unit4HomeOffice
         }
 
         private void ConsultantsFormButton_Click(object sender, EventArgs e)
-        {
+        {           
             var consultants = new ConsultantsForm(_context);
             consultants.Show();
         }

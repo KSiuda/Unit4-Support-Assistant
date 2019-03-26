@@ -14,9 +14,11 @@ namespace Unit4HomeOffice.Entities.Base
         public virtual int Id { get; set; }
 
         [Required]
+        [DefaultValue("")]
         public virtual DateTime CreatedDate { get; set; }
 
         [Required]
+        [DefaultValue("")]
         public virtual DateTime ModifiedDate { get; set; }
     }
 }
