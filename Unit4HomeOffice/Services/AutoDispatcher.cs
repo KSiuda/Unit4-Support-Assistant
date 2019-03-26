@@ -7,11 +7,20 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
+using Unit4HomeOffice.Entities;
+using System.Linq;
 
 namespace Unit4HomeOffice.Services
 {
     public class AutoDispatcher
     {
+        Context context;
+
+        public AutoDispatcher(Context context)
+        {
+            this.context = context;
+        }
+     
         public Thread AutoDispatching(IWebDriver driver, AppSetting appSetting, bool dispatch, Main form)
         {
             return new Thread(() => AutoDispatch(driver, appSetting, dispatch, form));
@@ -19,8 +28,8 @@ namespace Unit4HomeOffice.Services
 
         public void AutoDispatch(IWebDriver driver, AppSetting appSetting, bool dispatch, Main form)
         {
-            List<Tuple<string, string, string, string, string>> mainQueue;
-            List<Tuple<string, string, string, string, string>> Generics;
+            List<Tuple<string, string, string, string, string, string>> mainQueue;
+            List<Tuple<string, string, string, string, string, string>> Generics;
 
             while (dispatch)
             {
@@ -32,9 +41,7 @@ namespace Unit4HomeOffice.Services
                     Populate(driver, form.mainQueueListView, mainQueue);
 
                     Generics = CheckQueue(driver, appSetting.GetGenericsTab());
-                    Populate(driver, form.GenericsListView, Generics);
-
-                    Thread.Sleep(appSetting.GetInterval());
+                    Populate(driver, form.GenericsListView, Generics);                    
 
                 }
                 catch (System.Threading.ThreadAbortException)
@@ -46,11 +53,16 @@ namespace Unit4HomeOffice.Services
                     MessageBox.Show("Please log in to the Salesforce first or maximize the automated browser!");
                     dispatch = false;
                 }
+
+                Thread.Sleep(appSetting.GetInterval());
             }
+            form.dispatchLabel.Invoke(new Action(() => form.dispatchLabel.Visible = false));
+
         }
 
-        List<Tuple<string, string, string, string, string>> CheckQueue(IWebDriver driver, int tabNumber)
+        List<Tuple<string, string, string, string, string, string>> CheckQueue(IWebDriver driver, int tabNumber)
         {
+            List<string> CachedConsultants = new List<string>();
             Actions actions = new Actions(driver);
             var frame = driver.FindElement(By.CssSelector("#ext-comp-1005"));
             driver.SwitchTo().Frame(frame);
@@ -62,7 +74,7 @@ namespace Unit4HomeOffice.Services
 
 
             var tables = driver.FindElements(By.ClassName("x-grid3-row-table"));
-            var cases = new List<Tuple<string, string, string, string, string>>();
+            var cases = new List<Tuple<string, string, string, string, string, string>>();
 
             int i = 1;
 
@@ -73,6 +85,7 @@ namespace Unit4HomeOffice.Services
                 string SubModule = "";
                 string SupportCountry = "";
                 string SupportModel = "";
+                string Consultant = "";
 
                 var rows = table.FindElements(By.TagName("tr"));
 
@@ -90,7 +103,40 @@ namespace Unit4HomeOffice.Services
                     SubModule = Td3.Text.Substring(2, Td3.Text.Length - 2);
                     SupportCountry = Td4.Text;
                     SupportModel = Td5.Text;
-                    cases.Add(Tuple.Create(caseNumber, FunctionalArea, SubModule, SupportCountry, SupportModel));
+                    try
+                    {
+                        if (SubModule == "Salesorders")
+                            SubModule = "Sales Orders";
+
+                            if(SubModule == "Other")
+                            {
+                                Consultant = (from c in context.TrainingDetails
+                                              where !CachedConsultants.Contains(c.ConsultantName)
+                                              && (c.Status == "YES" ||c.Status =="TR")
+                                              select c.ConsultantName).FirstOrDefault();
+                                CachedConsultants.Add(Consultant);
+                            }
+                            else
+                            {
+                                Consultant = (from c in context.TrainingDetails
+                                              where c.TrainingName.Contains(SubModule)
+                                              && !CachedConsultants.Contains(c.ConsultantName)
+                                              && (c.Status == "YES" || c.Status == "TR")
+                                              select c.ConsultantName).FirstOrDefault();
+                                CachedConsultants.Add(Consultant);
+                            }
+                            
+                        
+                    }
+                    catch
+                    {
+                        Consultant = "Not found";
+                    }
+                   
+                    
+
+
+                    cases.Add(Tuple.Create(caseNumber, FunctionalArea, SubModule, SupportCountry, SupportModel, Consultant));
 
                     i++;
                 }
@@ -103,7 +149,7 @@ namespace Unit4HomeOffice.Services
             return cases;
         }
 
-        void Populate(IWebDriver driver, ListView queueListView, List<Tuple<string, string, string, string, string>> cases)
+        void Populate(IWebDriver driver, ListView queueListView, List<Tuple<string, string, string, string, string, string>> cases)
         {
             queueListView.Invoke(new Action(() => queueListView.Items.Clear()));           
             if (cases.Count > 0)
@@ -116,12 +162,13 @@ namespace Unit4HomeOffice.Services
             }
             foreach (var acase in cases)
             {
-                acase.Deconstruct(out string item1, out string item2, out string item3, out string item4, out string item5);
+                acase.Deconstruct(out string item1, out string item2, out string item3, out string item4, out string item5, out string item6);
                 ListViewItem Cases = new ListViewItem(item1);
                 Cases.SubItems.Add(item2);
                 Cases.SubItems.Add(item3);
                 Cases.SubItems.Add(item4);
                 Cases.SubItems.Add(item5);
+                Cases.SubItems.Add(item6);
                 queueListView.Invoke(new Action(() => queueListView.Items.Add(Cases)));
             }           
         }

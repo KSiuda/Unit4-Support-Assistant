@@ -18,9 +18,9 @@ namespace Unit4HomeOffice
             AppSetting setting = new AppSetting();
             MouseClicker mover = new MouseClicker();
             CaseUpdater updater = new CaseUpdater();
-            DriverCreator creator = new DriverCreator();
-            AutoDispatcher dispatcher = new AutoDispatcher();
+            DriverCreator creator = new DriverCreator();          
             Context context = new Context();
+            AutoDispatcher dispatcher = new AutoDispatcher(context);
             Application.Run(new Main(setting, mover, updater, creator, dispatcher, context));
 
 
