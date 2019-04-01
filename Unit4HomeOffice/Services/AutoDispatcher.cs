@@ -119,21 +119,30 @@ namespace Unit4HomeOffice.Services
                             SubModule = "Sales Orders";
 
                             if(SubModule == "Other")
-                            {
-                                Consultant = (from c in context.TrainingDetails
+                            {                              
+                                var query= (from c in context.TrainingDetails
                                               where !CachedConsultants.Contains(c.ConsultantName)
                                               && (c.Status == "YES" ||c.Status =="TR")
-                                              select c.ConsultantName).FirstOrDefault();
+                                              select c.ConsultantName);
+                                Consultant  = (from c in available
+                                                orderby c.Item2
+                                                where query.Contains(c.Item1)
+                                                select c.Item1).FirstOrDefault();
                                 CachedConsultants.Add(Consultant);
                             }
                             else
                             {
-                                Consultant = (from c in context.TrainingDetails
-                                              where c.TrainingName.Contains(SubModule)
-                                              && !CachedConsultants.Contains(c.ConsultantName)
-                                              && (c.Status == "YES" || c.Status == "TR")
-                                              select c.ConsultantName).FirstOrDefault();
-                                CachedConsultants.Add(Consultant);
+                            var query = (from c in context.TrainingDetails
+                                         where c.TrainingName.Contains(SubModule)
+                                         && !CachedConsultants.Contains(c.ConsultantName)
+                                         && (c.Status == "YES" || c.Status == "TR")
+                                         select c.ConsultantName);
+                               Consultant = (from c in available
+                                             orderby c.Item2
+                                             where query.Contains(c.Item1)
+                                             select c.Item1).FirstOrDefault();
+
+                            CachedConsultants.Add(Consultant);
                             }
                             
                         

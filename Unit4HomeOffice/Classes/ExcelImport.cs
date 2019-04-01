@@ -227,9 +227,6 @@ namespace Unit4HomeOffice.Classes
                 Excel._Worksheet xlWorksheet = xlWorkbook.Worksheets[1];
                 Excel.Range xlRange = xlWorksheet.UsedRange;
                 List<Tuple<string, int>> Consultants = new List<Tuple<string, int>>();
-                Console.WriteLine(xlWorkbook.Name);
-                Console.WriteLine(xlWorksheet.Name);
-                Console.WriteLine(xlWorkbook.Worksheets.Count);
 
                 int rowCount = xlRange.Rows.Count;
                 int colCount = xlRange.Columns.Count;
