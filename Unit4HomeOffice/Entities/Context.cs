@@ -18,5 +18,7 @@ namespace Unit4HomeOffice.Entities
         public DbSet<Trainings> Trainings { get; set; }
 
         public DbSet<TrainingDetails> TrainingDetails { get; set; }
+
+        public DbSet<Dictionary> Dictionary { get; set; }
     }
 }

@@ -9,12 +9,15 @@ using System.Windows.Forms;
 using System.Drawing;
 using Unit4HomeOffice.Entities;
 using System.Linq;
+using Unit4HomeOffice.Classes;
 
 namespace Unit4HomeOffice.Services
 {
     public class AutoDispatcher
     {
         Context context;
+        List<string> Consultants = new List<string>();
+        List<Tuple<string, int>> available = new List<Tuple<string, int>>();
 
         public AutoDispatcher(Context context)
         {
@@ -36,12 +39,19 @@ namespace Unit4HomeOffice.Services
                 form.dispatchLabel.Invoke(new Action(() => form.dispatchLabel.Visible = true));
 
                 try
-                {
-                    mainQueue = CheckQueue(driver, appSetting.GetMainQueueTab());
+                {   ExcelImport importer = new ExcelImport();
+                    available = importer.CheckConsultants(@"C:\Users\KSIUDA\Desktop\SQL\TICKETS LOGISTICS Mar 19 - Dec 19.xlsx");
+                    mainQueue = CheckQueue(driver, appSetting.GetMainQueueTab(), Consultants);
+                    foreach(var item in mainQueue)
+                    {
+                        Consultants.Add(item.Item6);
+                    }
                     Populate(driver, form.mainQueueListView, mainQueue);
 
-                    Generics = CheckQueue(driver, appSetting.GetGenericsTab());
-                    Populate(driver, form.GenericsListView, Generics);                    
+                    Generics = CheckQueue(driver, appSetting.GetGenericsTab(), Consultants);
+                    Populate(driver, form.GenericsListView, Generics);
+                    Consultants.Clear();
+                    available.Clear();
 
                 }
                 catch (System.Threading.ThreadAbortException)
@@ -60,9 +70,9 @@ namespace Unit4HomeOffice.Services
 
         }
 
-        List<Tuple<string, string, string, string, string, string>> CheckQueue(IWebDriver driver, int tabNumber)
+        List<Tuple<string, string, string, string, string, string>> CheckQueue(IWebDriver driver, int tabNumber,List<string> Consultants)
         {
-            List<string> CachedConsultants = new List<string>();
+            List<string> CachedConsultants = Consultants;
             Actions actions = new Actions(driver);
             var frame = driver.FindElement(By.CssSelector("#ext-comp-1005"));
             driver.SwitchTo().Frame(frame);

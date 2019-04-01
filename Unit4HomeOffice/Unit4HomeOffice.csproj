@@ -99,6 +99,7 @@
     <Compile Include="Entities\Base\EntityBase.cs" />
     <Compile Include="Entities\Consultants.cs" />
     <Compile Include="Entities\Context.cs" />
+    <Compile Include="Entities\Dictionary.cs" />
     <Compile Include="Entities\TrainingDetails.cs" />
     <Compile Include="Entities\Trainings.cs" />
     <Compile Include="Forms\ConsultantsForm.cs">
@@ -116,6 +117,11 @@
     </Compile>
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupportAssistantDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupportAssistantDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="System\Management\ManagementObjectSearcher.cs" />
     <Compile Include="Services\CaseUpdater.cs" />
@@ -150,6 +156,9 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Unit4HomeOffice.Entities.Consultants.datasource" />
+    <None Include="Properties\DataSources\Unit4HomeOffice.Entities.TrainingDetails.datasource" />
+    <None Include="Properties\DataSources\Unit4HomeOffice.Entities.Trainings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -159,6 +168,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SupportAssistantDataSet.xsc">
+      <DependentUpon>SupportAssistantDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SupportAssistantDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SupportAssistantDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SupportAssistantDataSet.xss">
+      <DependentUpon>SupportAssistantDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Unit4HomeOffice_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

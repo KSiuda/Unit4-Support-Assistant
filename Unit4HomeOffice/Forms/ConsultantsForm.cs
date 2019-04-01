@@ -15,6 +15,7 @@ namespace Unit4HomeOffice.Forms
     public partial class ConsultantsForm : Form
     {
         public Context context;
+        string path;
 
         public ConsultantsForm(Context context)
         {
@@ -34,11 +35,24 @@ namespace Unit4HomeOffice.Forms
 
         private void buttonImport_Click(object sender, EventArgs e)
         {
-            using (context)
+            openFileDialog1.FileName = String.Empty;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                 path = openFileDialog1.FileName;
+            }
+
+                using (context)
             {
                 ExcelImport excelImport = new ExcelImport();
-                excelImport.Import(context);
+                excelImport.Import(context, path);
             }
+        }
+
+        private void ConsultantsForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'supportAssistantDataSet.Trainings' table. You can move, or remove it, as needed.
+            this.trainingsTableAdapter.Fill(this.supportAssistantDataSet.Trainings);
+
         }
     }
 }

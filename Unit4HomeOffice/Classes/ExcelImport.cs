@@ -11,11 +11,11 @@ namespace Unit4HomeOffice.Classes
     public class ExcelImport
     {
 
-        public void Import(Context context)
+        public void Import(Context context, string path)
         {
-            
+            //@"C:\Users\KSIUDA\Desktop\SQL\Training List.xlsx"
             Excel.Application xlApp = new Excel.Application();
-            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\KSIUDA\Desktop\SQL\Training List.xlsx");
+            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(path);
             Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
             Excel.Range xlRange = xlWorksheet.UsedRange;
 
@@ -114,12 +114,12 @@ namespace Unit4HomeOffice.Classes
                     if (duration == "")
                     {
                         duration = null;
-                    }                    
+                    }
                     Int32.TryParse(duration, out int dur);
 
                     trainings.Add(Tuple.Create(trainings.Count() + 1, training));
                     var Training = new Trainings
-                    {                      
+                    {
                         Name = training,
                         Type = type,
                         Trainer = instructor,
@@ -158,7 +158,7 @@ namespace Unit4HomeOffice.Classes
                     context.Consultants.Add(Consultant);
                     context.SaveChanges();
                 }
-                
+
             }
 
 
@@ -196,7 +196,7 @@ namespace Unit4HomeOffice.Classes
 
                                 var TrainingDetails = new TrainingDetails
                                 {
-                                    
+
                                     TrainingName = name,
                                     ConsultantName = consultant.Item2,
                                     Status = trainingState,
@@ -218,5 +218,110 @@ namespace Unit4HomeOffice.Classes
                 }
             }
         }
+        public List<Tuple<string, int>> CheckConsultants(string path)       
+        {
+                //Create COM Objects. Create a COM object for everything that is referenced
+                Excel.Application xlApp = new Excel.Application();
+                //Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(url);
+                Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(path);
+                Excel._Worksheet xlWorksheet = xlWorkbook.Worksheets[1];
+                Excel.Range xlRange = xlWorksheet.UsedRange;
+                List<Tuple<string, int>> Consultants = new List<Tuple<string, int>>();
+                Console.WriteLine(xlWorkbook.Name);
+                Console.WriteLine(xlWorksheet.Name);
+                Console.WriteLine(xlWorkbook.Worksheets.Count);
+
+                int rowCount = xlRange.Rows.Count;
+                int colCount = xlRange.Columns.Count;
+
+
+                //iterate over the rows and columns and print to the console as it appears in the file
+                //excel is not zero based!!
+                //GET DAY
+                int columnDay = 0;
+                var day = DateTime.Now.Day.ToString();
+                #region ToCheck"
+                /*
+                for (int row = 4; row <= 4; row++)
+                {
+                    for (int column = 6; column < colCount; column++)
+                    {
+                        if(xlRange.Cells[row, column] != null && xlRange.Cells[row, column].Value2 != null)
+                        {
+                            string value = xlRange.Cells[row, column].Value2.ToString();
+                            if(value == day)
+                            {
+                                columnDay = column + 1;
+                                break;
+                            }
+                            else
+                            {
+                                columnDay = 6 + Convert.ToInt16(day) + 1;
+                            }
+
+                        }
+
+                    }
+
+                }
+                */
+                #endregion
+                columnDay = 6 + Convert.ToInt16(day);
+                for (int row = 5; row < rowCount; row++)
+                {
+                    string name = "";
+                    int cases = 0;
+                    for (int column = 3; column <= 3; column++)
+                    {
+
+                        if (xlRange.Cells[row, column] != null && xlRange.Cells[row, column].Value2 != null)
+                        {
+                            string value = xlRange.Cells[row, column].Value2.ToString();
+                            name = value;
+                        }
+
+
+                    }
+                    for (int column = columnDay; column <= columnDay; column++)
+                    {
+                        if (xlRange.Cells[row, column] != null && xlRange.Cells[row, column].Value2 != null)
+                        {
+                            string value = xlRange.Cells[row, column].Value2.ToString();
+                            if (value.Contains("x"))
+                            {
+                                value = "9";
+                            }
+                            cases = Convert.ToInt16(value);
+                        }
+
+                    }
+                    Consultants.Add(Tuple.Create(name, cases));
+                }
+
+                //cleanup
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                //rule of thumb for releasing com objects:
+                //  never use two dots, all COM objects must be referenced and released individually
+                //  ex: [somthing].[something].[something] is bad
+
+                //release com objects to fully kill excel process from running in the background
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+
+                return Consultants;
+            }
+
+        }
     }
-}
+           
+
