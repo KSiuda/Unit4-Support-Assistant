@@ -46,6 +46,7 @@ namespace Unit4HomeOffice
 
               _setting.SaveUserName(textBoxUserName.Text);
               _setting.SavePassword(textBoxPassword.Text);
+              _setting.SaveSpreadsheet(spreadsheeTextBox.Text);
                 int minutes = Int32.Parse(intervalTextBox.Text) * 60000;
               _setting.SaveInterval(minutes.ToString());
               MessageBox.Show("Successfully saved", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -66,6 +67,7 @@ namespace Unit4HomeOffice
             intervalTextBox.Text = (_setting.GetInterval() / 60000).ToString();
             genericsTabTextBox.Text = (_setting.GetGenericsTab()).ToString();
             mainQueueTextBox.Text = (_setting.GetMainQueueTab()).ToString();
+            spreadsheeTextBox.Text = (_setting.GetSpreadhseet()).ToString();
         }
 
         private void checkBoxFirefox_CheckedChanged(object sender, EventArgs e)

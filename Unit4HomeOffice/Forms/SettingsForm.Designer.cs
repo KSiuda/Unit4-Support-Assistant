@@ -53,6 +53,8 @@
             this.mainQueueTextBox = new System.Windows.Forms.TextBox();
             this.mainQueueName = new System.Windows.Forms.Label();
             this.textBoxMainQueueName = new System.Windows.Forms.TextBox();
+            this.spreadsheetLabel = new System.Windows.Forms.Label();
+            this.spreadsheeTextBox = new System.Windows.Forms.TextBox();
             this.panelLeft.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUNIT4)).BeginInit();
@@ -274,11 +276,31 @@
             this.textBoxMainQueueName.Size = new System.Drawing.Size(53, 22);
             this.textBoxMainQueueName.TabIndex = 17;
             // 
+            // spreadsheetLabel
+            // 
+            this.spreadsheetLabel.AutoSize = true;
+            this.spreadsheetLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spreadsheetLabel.Location = new System.Drawing.Point(525, 302);
+            this.spreadsheetLabel.Name = "spreadsheetLabel";
+            this.spreadsheetLabel.Size = new System.Drawing.Size(192, 23);
+            this.spreadsheetLabel.TabIndex = 18;
+            this.spreadsheetLabel.Text = "Spreadsheet path:";
+            // 
+            // spreadsheeTextBox
+            // 
+            this.spreadsheeTextBox.Location = new System.Drawing.Point(711, 305);
+            this.spreadsheeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.spreadsheeTextBox.Name = "spreadsheeTextBox";
+            this.spreadsheeTextBox.Size = new System.Drawing.Size(132, 22);
+            this.spreadsheeTextBox.TabIndex = 19;
+            // 
             // SettingsForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(855, 440);
+            this.Controls.Add(this.spreadsheeTextBox);
+            this.Controls.Add(this.spreadsheetLabel);
             this.Controls.Add(this.textBoxMainQueueName);
             this.Controls.Add(this.mainQueueName);
             this.Controls.Add(this.mainQueueTextBox);
@@ -336,5 +358,7 @@
         private System.Windows.Forms.TextBox mainQueueTextBox;
         private System.Windows.Forms.Label mainQueueName;
         private System.Windows.Forms.TextBox textBoxMainQueueName;
+        private System.Windows.Forms.Label spreadsheetLabel;
+        private System.Windows.Forms.TextBox spreadsheeTextBox;
     }
 }

@@ -40,7 +40,7 @@ namespace Unit4HomeOffice.Services
 
                 try
                 {   ExcelImport importer = new ExcelImport();
-                    available = importer.CheckConsultants(@"C:\Users\KSIUDA\Desktop\SQL\TICKETS LOGISTICS Mar 19 - Dec 19.xlsx");
+                    available = importer.CheckConsultants(appSetting.GetSpreadhseet());
                     mainQueue = CheckQueue(driver, appSetting.GetMainQueueTab(), Consultants);
                     foreach(var item in mainQueue)
                     {

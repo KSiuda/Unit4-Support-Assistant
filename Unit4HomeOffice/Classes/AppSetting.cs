@@ -106,6 +106,19 @@ namespace Unit4HomeOffice
 
             return tab;
         }
+
+        public string GetSpreadhseet()
+        {
+            return config.AppSettings.Settings["spreadsheet"].Value;
+        }
+
+        public void SaveSpreadsheet(string value)
+        {
+            config.AppSettings.Settings.Remove("spreadsheet");
+            config.AppSettings.Settings.Add("spreadsheet", value);
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
+        }
     }
 }
 
