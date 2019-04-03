@@ -236,12 +236,12 @@ namespace Unit4HomeOffice
                     Thread.Sleep(appSetting.GetInterval());
                 }
                 catch(System.Threading.ThreadAbortException) //To stop the MessageBox from appearing after the program shutdown
-                {
+                {                  
                     update = false;
                 }
-                catch
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Please log in to the Salesforce first or maximize the automated browser!");
+                    MessageBox.Show(ex.StackTrace, ex.Message);               
                     update = false;
                 }
                 

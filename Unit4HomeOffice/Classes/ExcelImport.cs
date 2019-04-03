@@ -228,6 +228,8 @@ namespace Unit4HomeOffice.Classes
                 Excel.Range xlRange = xlWorksheet.UsedRange;
                 List<Tuple<string, int>> Consultants = new List<Tuple<string, int>>();
 
+            try
+            {
                 int rowCount = xlRange.Rows.Count;
                 int colCount = xlRange.Columns.Count;
 
@@ -237,37 +239,14 @@ namespace Unit4HomeOffice.Classes
                 //GET DAY
                 int columnDay = 0;
                 var day = DateTime.Now.Day.ToString();
-                #region ToCheck"
-                /*
-                for (int row = 4; row <= 4; row++)
-                {
-                    for (int column = 6; column < colCount; column++)
-                    {
-                        if(xlRange.Cells[row, column] != null && xlRange.Cells[row, column].Value2 != null)
-                        {
-                            string value = xlRange.Cells[row, column].Value2.ToString();
-                            if(value == day)
-                            {
-                                columnDay = column + 1;
-                                break;
-                            }
-                            else
-                            {
-                                columnDay = 6 + Convert.ToInt16(day) + 1;
-                            }
+                int consultantsCount = 28;
 
-                        }
-
-                    }
-
-                }
-                */
-                #endregion
                 columnDay = 6 + Convert.ToInt16(day);
-                for (int row = 5; row < rowCount; row++)
+                for (int row = 5; row <= consultantsCount; row++)
                 {
                     string name = "";
                     int cases = 0;
+
                     for (int column = 3; column <= 3; column++)
                     {
 
@@ -294,7 +273,14 @@ namespace Unit4HomeOffice.Classes
                     }
                     Consultants.Add(Tuple.Create(name, cases));
                 }
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+            finally
+            {
                 //cleanup
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
@@ -313,7 +299,8 @@ namespace Unit4HomeOffice.Classes
 
                 //quit and release
                 xlApp.Quit();
-                Marshal.ReleaseComObject(xlApp);
+                Marshal.ReleaseComObject(xlApp); 
+            }
 
                 return Consultants;
             }

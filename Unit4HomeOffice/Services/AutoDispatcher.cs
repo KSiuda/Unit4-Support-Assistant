@@ -54,13 +54,14 @@ namespace Unit4HomeOffice.Services
                     available.Clear();
 
                 }
-                catch (System.Threading.ThreadAbortException)
+                catch (System.Threading.ThreadAbortException ex)
                 {
+                    MessageBox.Show(ex.StackTrace);
                     dispatch = false;
                 }
-                catch
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Please log in to the Salesforce first or maximize the automated browser!");
+                    MessageBox.Show(ex.StackTrace,ex.Message);
                     dispatch = false;
                 }
 
@@ -121,8 +122,7 @@ namespace Unit4HomeOffice.Services
                             if(SubModule == "Other")
                             {                              
                                 var query= (from c in context.TrainingDetails
-                                              where !CachedConsultants.Contains(c.ConsultantName)
-                                              && (c.Status == "YES" ||c.Status =="TR")
+                                              where !CachedConsultants.Contains(c.ConsultantName)                                             
                                               select c.ConsultantName);
                                 Consultant  = (from c in available
                                                 orderby c.Item2
@@ -147,9 +147,9 @@ namespace Unit4HomeOffice.Services
                             
                         
                     }
-                    catch
+                    catch(Exception ex)
                     {
-                        Consultant = "Not found";
+                        MessageBox.Show(ex.StackTrace, ex.Message);
                     }
                    
                     
