@@ -7,7 +7,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-
+using System.Threading.Tasks;
 
 namespace Unit4HomeOffice
 {
@@ -15,23 +15,22 @@ namespace Unit4HomeOffice
     {
         private List<int> _driverProcessIDs;
 
-        public IWebDriver CreateDriver(CaseUpdater updater, Configuration configuration, AppSetting setting, Main form)
+        public async Task<IWebDriver> CreateDriver(CaseUpdater updater, Configuration configuration, AppSetting setting, Main form)
         {
             configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            IEnumerable<int> pidsBefore = Process.GetProcessesByName("chrome").Select(p => p.Id);
+            IEnumerable<int> pidsBefore = await Task.Run(() => Process.GetProcessesByName("chrome").Select(p => p.Id));
 
-            IWebDriver driver = GetNew(configuration);
+            IWebDriver driver = await GetNew(configuration);
             driver.Url = "https://u4.my.salesforce.com/";
+
+
+            await Task.Run(() => driver.Manage().Window.Maximize());
+            await Task.Run(() => driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10));
+
+            await Task.Run(() => driver.FindElement(By.Id("username")).SendKeys(setting.GetUserName()));
+            await Task.Run(() => driver.FindElement(By.Id("password")).SendKeys(setting.GetPassword() + OpenQA.Selenium.Keys.Enter));
+
             
-
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
-            driver.FindElement(By.Id("username")).SendKeys(setting.GetUserName());
-            driver.FindElement(By.Id("password")).SendKeys(setting.GetPassword() + OpenQA.Selenium.Keys.Enter);
-
-            
-
             IEnumerable<int> pidsAfter = Process.GetProcessesByName("chrome").Select(p => p.Id);
             IEnumerable<int> driverPids = pidsAfter.Except(pidsBefore);
             List<int> driverslist = driverPids.ToList();
@@ -45,7 +44,7 @@ namespace Unit4HomeOffice
 
 
 
-        public IWebDriver GetNew(Configuration configuration)
+        public async Task<IWebDriver> GetNew(Configuration configuration)
         {
             if (configuration.AppSettings.Settings["browser"].Value == "Firefox")
             {
@@ -60,7 +59,7 @@ namespace Unit4HomeOffice
             var chromeDriverService = ChromeDriverService.CreateDefaultService();
             chromeDriverService.HideCommandPromptWindow = true;
 
-            var driverProcessIds = new List<int> { chromeDriverService.ProcessId };
+            var driverProcessIds = await Task.Run(() => new List<int> { chromeDriverService.ProcessId });
             _driverProcessIDs = driverProcessIds;
             return new ChromeDriver(chromeDriverService, new ChromeOptions());
 

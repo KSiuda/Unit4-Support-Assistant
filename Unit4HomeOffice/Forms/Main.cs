@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using OpenQA.Selenium;
 using Unit4HomeOffice.Entities;
@@ -113,11 +114,11 @@ namespace Unit4HomeOffice
 
         }
 
-        private void buttonSF_Click(object sender, EventArgs e)
+        private async void buttonSF_ClickAsync(object sender, EventArgs e)
         {
             try
             {
-               _driver = _creator.CreateDriver(_updater, _config, _setting, _main);
+               _driver = await _creator.CreateDriver(_updater, _config, _setting, _main);
                AliveChecker = _creator.DriverAliveChecker(_driver, _setting, _main);
                AliveChecker.Start();
             }

@@ -257,7 +257,7 @@
             this.buttonSF.TabIndex = 2;
             this.buttonSF.Text = " ";
             this.buttonSF.UseVisualStyleBackColor = true;
-            this.buttonSF.Click += new System.EventHandler(this.buttonSF_Click);
+            this.buttonSF.Click += new System.EventHandler(this.buttonSF_ClickAsync);
             // 
             // buttonRobot
             // 

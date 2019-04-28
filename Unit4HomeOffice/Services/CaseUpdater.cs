@@ -14,7 +14,7 @@ namespace Unit4HomeOffice
 
         public Thread CaseUpdaterThread(IWebDriver driver, AppSetting appSetting, bool update, Main form)
         {
-            return new Thread(() => UpdateCases(driver,appSetting, update, form));
+            return new Thread(async () => await UpdateCases(driver, appSetting, update, form));
         }
 
         async Task Populate(IWebDriver driver, ListView casesListView, List<string> cases)
@@ -26,11 +26,11 @@ namespace Unit4HomeOffice
             foreach (var acase in cases)
             {
                 ListViewItem Cases = new ListViewItem(acase);
-                casesListView.Invoke(new Action(() => casesListView.Items.Add(acase)));
+                await Task.Run(() => casesListView.Invoke(new Action(() => casesListView.Items.Add(acase))));
             }
         }
 
-        void Populate(IWebDriver driver, ListView casesListView, ListView newCasesListView, List<string> cases, List<string> newcases)
+        async Task Populate(IWebDriver driver, ListView casesListView, ListView newCasesListView, List<string> cases, List<string> newcases)
         {
             if (cases.Count > 0)
             {
@@ -39,7 +39,7 @@ namespace Unit4HomeOffice
             foreach (var acase in cases)
             {
                 ListViewItem Cases = new ListViewItem(acase);
-                casesListView.Invoke(new Action(() => casesListView.Items.Add(acase)));
+                await Task.Run (() => casesListView.Invoke(new Action(() => casesListView.Items.Add(acase))));
                 
 
             }
@@ -50,12 +50,12 @@ namespace Unit4HomeOffice
             foreach (var acase in newcases)
             {
                  ListViewItem Cases = new ListViewItem(acase);
-                 newCasesListView.Invoke(new Action(() => newCasesListView.Items.Add(acase)));
+                 await Task.Run (() => newCasesListView.Invoke(new Action(() => newCasesListView.Items.Add(acase))));
                  
             }
         }
 
-        void Populate(IWebDriver driver, ListView casesListView,ListView removedCasesListView, List<string> cases, IEnumerable<string> removedcases)
+        async Task Populate(IWebDriver driver, ListView casesListView,ListView removedCasesListView, List<string> cases, IEnumerable<string> removedcases)
         {
             if (cases.Count > 0)
             {
@@ -64,7 +64,7 @@ namespace Unit4HomeOffice
             foreach (var acase in cases)
             {
                 ListViewItem Cases = new ListViewItem(acase);
-                casesListView.Invoke(new Action(() => casesListView.Items.Add(acase)));
+                await Task.Run (() => casesListView.Invoke(new Action(() => casesListView.Items.Add(acase))));
                
 
             }
@@ -75,7 +75,7 @@ namespace Unit4HomeOffice
             foreach (var acase in removedcases)
             {
                 ListViewItem Cases = new ListViewItem(acase);
-                removedCasesListView.Invoke(new Action(() => removedCasesListView.Items.Add(acase)));
+                await Task.Run(() => removedCasesListView.Invoke(new Action(() => removedCasesListView.Items.Add(acase))));
               
             }
         }
@@ -124,7 +124,7 @@ namespace Unit4HomeOffice
                 {
                     if (td.Text.StartsWith("00"))
                     {
-                        cases.Add(td.Text);
+                       Task.Run(() => cases.Add(td.Text));
                     }
                 }
             }
@@ -172,7 +172,7 @@ namespace Unit4HomeOffice
 
                     currentCases = new List<string>(GetCurrentInProgressCases(driver));
                     current = currentCases.Count();
-                    form.progressLabel.Invoke(new Action(() => form.progressLabel.Text = current.ToString()));
+                    await Task.Run(() => form.progressLabel.Invoke(new Action(() => form.progressLabel.Text = current.ToString())));
 
 
                     if (count == 0)
@@ -207,11 +207,11 @@ namespace Unit4HomeOffice
                         {
                             if(newCases.Count() != 0)
                             {
-                                Populate(driver, casesList,newCasesList, currentCases, newCases);
+                                await Populate(driver, casesList, newCasesList, currentCases, newCases);
                             }
                             if (removedCases.Count() != 0)
                             {
-                                Populate(driver, casesList, removedCasesList, currentCases, removedCases.AsEnumerable());
+                                await Populate(driver, casesList, removedCasesList, currentCases, removedCases.AsEnumerable());
                             }
                         }
                         if(removedCases.Count() == 0)
