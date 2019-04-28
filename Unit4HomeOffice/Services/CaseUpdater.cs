@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Unit4HomeOffice
@@ -16,7 +17,7 @@ namespace Unit4HomeOffice
             return new Thread(() => UpdateCases(driver,appSetting, update, form));
         }
 
-        void Populate(IWebDriver driver, ListView casesListView, List<string> cases)
+        async Task Populate(IWebDriver driver, ListView casesListView, List<string> cases)
         {
             if (cases.Count > 0)
             {
@@ -149,7 +150,7 @@ namespace Unit4HomeOffice
 
 
 
-        public void UpdateCases(IWebDriver driver, AppSetting appSetting, bool update, Main form)
+        public async Task UpdateCases(IWebDriver driver, AppSetting appSetting, bool update, Main form)
         {
             int cached = 0;
             int count = 0;
@@ -176,7 +177,7 @@ namespace Unit4HomeOffice
 
                     if (count == 0)
                     {
-                        Populate(driver, casesList, currentCases);
+                       await Populate(driver, casesList, currentCases);
                     }
 
 
@@ -223,7 +224,7 @@ namespace Unit4HomeOffice
                         }
                         else
                         {
-                            Populate(driver, casesList, currentCases);
+                           await Populate(driver, casesList, currentCases);
                         }
 
                     }

@@ -26,10 +26,10 @@ namespace Unit4HomeOffice.Services
      
         public Thread AutoDispatching(IWebDriver driver, AppSetting appSetting, bool dispatch, Main form)
         {
-            return new Thread(() => AutoDispatch(driver, appSetting, dispatch, form));
+            return new Thread(async () => await AutoDispatch(driver, appSetting, dispatch, form));
         }
 
-        public void AutoDispatch(IWebDriver driver, AppSetting appSetting, bool dispatch, Main form)
+        async Task AutoDispatch(IWebDriver driver, AppSetting appSetting, bool dispatch, Main form)
         {
             List<Tuple<string, string, string, string, string, string>> mainQueue;
             List<Tuple<string, string, string, string, string, string>> Generics;
