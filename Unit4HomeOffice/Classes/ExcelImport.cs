@@ -241,7 +241,14 @@ namespace Unit4HomeOffice.Classes
                 var day = DateTime.Now.Day.ToString();
                 int consultantsCount = 28;
 
-                columnDay = 6 + Convert.ToInt16(day);
+                if(Convert.ToInt16(day) == 1)
+                {
+                    columnDay = 6 + Convert.ToInt16(day);
+                }
+                else
+                {
+                    columnDay = 7 + (Convert.ToInt16(day) * 2) - 2;
+                }
                 for (int row = 5; row <= consultantsCount; row++)
                 {
                     string name = "";
