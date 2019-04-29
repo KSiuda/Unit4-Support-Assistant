@@ -44,12 +44,12 @@ namespace Unit4HomeOffice.Services
                     mainQueue = CheckQueue(driver, appSetting.GetMainQueueTab(), Consultants);
                     foreach(var item in mainQueue)
                     {
-                        Consultants.Add(item.Item6);
+                         Consultants.Add(item.Item6);
                     }
                     Populate(driver, form.mainQueueListView, mainQueue);
 
                     Generics = CheckQueue(driver, appSetting.GetGenericsTab(), Consultants);
-                    Populate(driver, form.GenericsListView, Generics);
+                    await Populate(driver, form.GenericsListView, Generics);
                     Consultants.Clear();
                     available.Clear();
 
@@ -168,7 +168,7 @@ namespace Unit4HomeOffice.Services
             return cases;
         }
 
-        void Populate(IWebDriver driver, ListView queueListView, List<Tuple<string, string, string, string, string, string>> cases)
+        async Task Populate(IWebDriver driver, ListView queueListView, List<Tuple<string, string, string, string, string, string>> cases)
         {
             queueListView.Invoke(new Action(() => queueListView.Items.Clear()));           
             if (cases.Count > 0)
@@ -183,12 +183,12 @@ namespace Unit4HomeOffice.Services
             {
                 acase.Deconstruct(out string item1, out string item2, out string item3, out string item4, out string item5, out string item6);
                 ListViewItem Cases = new ListViewItem(item1);
-                Cases.SubItems.Add(item2);
-                Cases.SubItems.Add(item3);
-                Cases.SubItems.Add(item4);
-                Cases.SubItems.Add(item5);
-                Cases.SubItems.Add(item6);
-                queueListView.Invoke(new Action(() => queueListView.Items.Add(Cases)));
+                await Task.Run(() => Cases.SubItems.Add(item2));
+                await Task.Run(() => Cases.SubItems.Add(item3));
+                await Task.Run(() => Cases.SubItems.Add(item4));
+                await Task.Run(() => Cases.SubItems.Add(item5));
+                await Task.Run(() => Cases.SubItems.Add(item6));
+                await Task.Run(() => queueListView.Invoke(new Action(() => queueListView.Items.Add(Cases))));
             }           
         }
 
