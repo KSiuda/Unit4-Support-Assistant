@@ -122,9 +122,9 @@ namespace Unit4HomeOffice
                AliveChecker = _creator.DriverAliveChecker(_driver, _setting, _main);
                AliveChecker.Start();
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Something went wrong");
+                MessageBox.Show($"{ex.Message} {ex.StackTrace}");
             }
         }
 
@@ -151,9 +151,9 @@ namespace Unit4HomeOffice
 
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Please log in to the Salesforce first!");
+                MessageBox.Show($"Please log in to the Salesforce first! Exact error: {ex.Message} {ex.StackTrace}");
             }
             
         }

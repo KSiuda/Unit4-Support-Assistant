@@ -46,7 +46,7 @@ namespace Unit4HomeOffice.Services
                     {
                          Consultants.Add(item.Item6);
                     }
-                    Populate(driver, form.mainQueueListView, mainQueue);
+                    await Populate(driver, form.mainQueueListView, mainQueue);
 
                     Generics = CheckQueue(driver, appSetting.GetGenericsTab(), Consultants);
                     await Populate(driver, form.GenericsListView, Generics);
