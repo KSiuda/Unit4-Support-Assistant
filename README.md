@@ -1,4 +1,4 @@
-# Unit4 Support Assistant
+#Support Assistant
 
 Initially created 4fun, occured to be pretty useful.
 This application helps with working on cases from SalesForce, uses Selenium to get data from it and notify about changes.
